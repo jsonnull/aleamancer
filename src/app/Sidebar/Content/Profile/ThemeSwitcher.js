@@ -7,7 +7,8 @@ import type { Theme } from 'types'
 
 type ButtonProps = {
   selected: boolean,
-  onClick: Function
+  onClick: Function,
+  children?: any
 }
 const ThemeButton = (props: ButtonProps) => {
   let variant = (props.selected) ? 'green' : 'outline'

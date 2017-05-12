@@ -10,7 +10,7 @@ type Props = {
 
 export default class MessageList extends React.Component<*, Props, *> {
   timer: number
-  scroll: HTMLELement
+  scroll: HTMLElement
 
   componentDidMount () {
     // Every minute, update chat timestamps
