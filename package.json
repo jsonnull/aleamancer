@@ -4,7 +4,7 @@
     "build": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "lint": "eslint src",
     "test": "jest",
-    "flow": "flow; test $? -eq 0 -o $? -eq 2"
+    "flow": "flow"
   },
   "dependencies": {
     "firebase": "^3.6.4",
