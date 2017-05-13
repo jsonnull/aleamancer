@@ -15,7 +15,7 @@ export default class MessageView extends React.Component<*, Props, *> {
     return <div className={styles.message}>
       <div className={styles.from}>
         { from }{' '}
-        <span className={styles.date}>
+        <span className={styles.date} title={ Date(timestamp) }>
           { new Timeago().format(timestamp) }
         </span>
       </div>
