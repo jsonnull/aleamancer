@@ -55,7 +55,10 @@ export default class UserManager {
   }
 
   loadProfile () {
-    const { displayName, photoURL } = firebase.auth().currentUser
+    const currentUser = firebase.auth().currentUser
+    const photoURL = currentUser.photoURL
+    const displayName = currentUser.displayName || currentUser.email
+
     let user = {
       displayName,
       photoURL
