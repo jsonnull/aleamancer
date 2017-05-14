@@ -29,7 +29,7 @@ export default class Editable extends React.Component<*, Props, *> {
     this.shouldFocus = false
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: Props) {
     if (this.state.value !== nextProps.value) {
       this.setState({
         value: nextProps.value
