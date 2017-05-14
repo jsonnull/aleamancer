@@ -69,6 +69,10 @@ export default class UserManager {
 
   // FIXME: user object
   saveProfile (user: Object) {
+    if (user.displayName === '') {
+      user.displayName = firebase.auth().currentUser.email
+      this.store.dispatch(hydrateUserProfile(user))
+    }
     firebase.auth().currentUser
       .updateProfile({
         displayName: user.displayName
