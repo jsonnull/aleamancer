@@ -8,6 +8,8 @@ type RollsProps = {
 }
 const Rolls = (props: RollsProps) => {
   return <span>
+    <i className='fa fa-cube'></i>
+    {' '}
     {props.rolls.map((roll, i, arr) => (
       <span key={i}>
         <span className={styles.roll}>
