@@ -29,6 +29,13 @@ export default class Editable extends React.Component<*, Props, *> {
     this.shouldFocus = false
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.state.value !== nextProps.value) {
+      this.setState({
+        value: nextProps.value
+      })
+    }
+  }
   handleEdit (event: Object) {
     this.setState({ value: event.target.value })
   }
