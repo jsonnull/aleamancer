@@ -9,8 +9,12 @@ const initialState = []
 export default function reducer (state: MessagesState = initialState, action: Action) {
   switch (action.type) {
     case 'RECEIVE_MESSAGE':
-      const isMessageInState = state.findIndex(message => message.key === action.message.key) !== -1
-      return (!isMessageInState ? state.concat(action.message) : state)
+      const message = action.message
+      const isMessageInState = state.findIndex(el => el.key === message.key) !== -1
+      if (!isMessageInState) {
+        return state.concat(message)
+      }
+      return state
     default:
       return state
   }
