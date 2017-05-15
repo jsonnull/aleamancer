@@ -16,7 +16,9 @@
       "$message": {
         // Messages are append/delete only
         ".write": "!data.exists() || !newData.exists()"
-      }
+      },
+      // Improve performance
+      ".indexOn": "timestamp"
     },
 
     // Users table has user-specific info
