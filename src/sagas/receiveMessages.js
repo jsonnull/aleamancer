@@ -27,7 +27,9 @@ export default function * receiveMessages (): Generator<*, *, *> {
 
   const listener = eventChannel(emit => {
     const ref = firebase.database().ref('messages')
-    ref.limitToLast(12).on('child_added', emit)
+    ref.orderByChild('timestamp')
+       .limitToLast(12)
+       .on('child_added', emit)
 
     return () => {
       ref.off()
