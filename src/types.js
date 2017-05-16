@@ -6,7 +6,7 @@ export type Roll = number | {
   mod?: 'keep' | 'drop'
 }
 
-export type MessageResult = Array<Roll>;
+export type MessageResult = Array<Roll>
 
 /* Message type */
 export type Message = {
