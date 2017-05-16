@@ -1,11 +1,12 @@
 /* @flow */
 
-// Result data structure for messages
-export type MessageResult = {
-  mod: number,
-  rolls: Array<number>,
-  total: number
+export type Roll = number | {
+  die: number,
+  result: number,
+  mod?: 'keep' | 'drop'
 }
+
+export type MessageResult = Array<Roll>;
 
 /* Message type */
 export type Message = {
