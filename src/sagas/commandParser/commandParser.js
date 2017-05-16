@@ -36,37 +36,59 @@ export default class CommandParser {
   }
 
   roll (text: string): MessageResult {
-    var args = text.split(' ').join('')
-    args = args.split('+').join(' + ').split('-').join(' - ').split(' ')
+    // Remove extra whitespace
+    const args = text.split(' ').join('')
 
-    // Get the random number
-    let rands = []
-    let modifier = 0
-    for (let i = 0; i < args.length; i++) {
-      if (args[i].indexOf('d') !== -1) {
-        let [num, max] = args[i].split('d').map(n => Number(n))
+    // Split into a number of rolls
+    const rolls = args.split('+').join(' +').split('-').join(' -').split(' ')
 
-        for (let j = 0; j < num; j++) {
-          let roll = this.random.integer(1, max)
-          roll *= args[i - 1] === '-' ? -1 : 1
-          rands.push(roll)
+    // Now we build up the array of results
+    const results: MessageResult = []
+
+    rolls.forEach(roll => {
+      // Is a die roll like +1d6
+      if (roll.indexOf('d') !== -1) {
+        // Figure out what the operation for this roll is
+        let operation = '+'
+
+        if (roll[0] === '-') {
+          operation = '-'
+          roll = roll.slice(1)
+        } else if (roll[0] === '+') {
+          roll = roll.slice(1)
         }
-      } else if (!isNaN(args[i])) {
-        if (args[i - 1] === '+') {
-          modifier += Number(args[i])
-        } else if (args[i - 1] === '-') {
-          modifier -= Number(args[i])
+
+        const [numberOfRolls, dieMax] = roll.split('d').map(Number)
+
+        if (isNaN(numberOfRolls) || isNaN(dieMax)) {
+          return
         }
+
+        for (let i = 0; i < numberOfRolls; i++) {
+          let result = this.random.integer(1, dieMax)
+
+          results.push({
+            die: dieMax,
+            result,
+            operation
+          })
+        }
+
+        // Done parsing this roll
+        return
       }
-    }
 
-    let total = rands.reduce((a, b) => a + b, 0) + modifier
+      const number = Number(roll)
+      // Is a constant
+      if (!isNaN(number)) {
+        // Just add the constant
+        results.push(number)
 
-    let result = {
-      'rolls': rands,
-      'mod': modifier,
-      'total': total
-    }
-    return result
+        // Done parsing this roll
+        return
+      }
+    })
+
+    return results
   }
 }

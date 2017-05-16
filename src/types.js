@@ -3,7 +3,8 @@
 export type Roll = number | {
   die: number,
   result: number,
-  mod?: 'keep' | 'drop'
+  mod?: 'keep' | 'drop',
+  operation: '+' | '-'
 }
 
 export type MessageResult = Array<Roll>
