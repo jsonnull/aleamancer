@@ -83,9 +83,6 @@ export default class CommandParser {
       if (!isNaN(number)) {
         // Just add the constant
         results.push(number)
-
-        // Done parsing this roll
-        return
       }
     })
 
