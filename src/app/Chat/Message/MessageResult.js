@@ -4,34 +4,22 @@ import type { MessageResult } from 'types'
 import styles from './style.css'
 
 type RollsProps = {
-  rolls: Array<number>
+  roll: Object<any>
 }
-const Rolls = (props: RollsProps) => {
-  return <span>
-    <i className='fa fa-cube'></i>
-    {' '}
-    {props.rolls.map((roll, i, arr) => (
-      <span key={i}>
-        <span className={styles.roll}>
-          { roll }
-        </span>
-        {(i + 1 !== arr.length) ? ' + ' : null}
-      </span>
-    ))}
-  </span>
-}
-
-type ModProps = {
-  mod: number
-}
-const Mod = (props: ModProps) => {
-  if (props.mod == 0) {
-    return null
+const Roll = (props: RollsProps) => {
+  const { die, result, mod, operation } = props.roll
+  let resultColor = 'inherit'
+  if (result === die) {
+    resultColor = 'green'
+  } else if (result === 1) {
+    resultColor = 'red'
   }
-
   return <span>
-    {' + '}
-    <span className={styles.mod}>{props.mod}</span>
+
+    {' '}
+    <span className={styles.roll} style={{color: resultColor}}>
+      { result }
+    </span>
   </span>
 }
 
@@ -43,14 +31,20 @@ const Result = (props: Props) => {
     return null
   }
 
-  let { mod, rolls, total } = props.result
+  const results = props.result
+  let total
 
   return (
     <div className={styles.result}>
-      <Rolls rolls={rolls} />
-      <Mod mod={mod} />
+      <i className='fa fa-cube'></i>
+      {results.map((result, i, arr) => (
+        <span key={i}>
+          <Roll roll={result} />
+          {(i + 1 !== arr.length) ? ` ${result.operation} ` : null}
+        </span>
+      ))}
       {' = '}
-      <span className={styles.total}>{total}</span>
+      <span className={styles.total}></span>
     </div>
   )
 }
