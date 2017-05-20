@@ -31,10 +31,11 @@
     :global(.unpinned) & {
       background-color: $bgPrimary;
       box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
-      border: 1px solid white;
+      border: 1px solid $bgPrimary;
 
       :global(.dark) & {
         background-color: $bgPrimaryDark;
+        border-color: $bgPrimaryDark;
       }
     }
   }
