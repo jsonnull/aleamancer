@@ -1,10 +1,9 @@
 # Aleamancer
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/jsonnull/aleamancer.svg)](https://greenkeeper.io/)
-
 [![Build
 Status](https://travis-ci.org/jsonnull/aleamancer.svg?branch=master)](https://travis-ci.org/jsonnull/aleamancer)
 [![Discord](https://img.shields.io/badge/discord-%23aleamancer-blue.svg)](https://discord.gg/nA76N9d)
+[![Greenkeeper badge](https://badges.greenkeeper.io/jsonnull/aleamancer.svg)](https://greenkeeper.io/)
 
 Aleamancer is an online platform for tabletop role-playing games, built to make
 creation, running, and playing of games enjoyable and compelling.
