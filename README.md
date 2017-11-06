@@ -1,7 +1,7 @@
 # Aleamancer
 
-[![Build
-Status](https://travis-ci.org/jsonnull/aleamancer.svg?branch=master)](https://travis-ci.org/jsonnull/aleamancer)
+[![Build Status](https://travis-ci.org/jsonnull/aleamancer.svg?branch=master)](https://travis-ci.org/jsonnull/aleamancer)
+[![Coverage Status](https://coveralls.io/repos/github/jsonnull/aleamancer/badge.svg?branch=master)](https://coveralls.io/github/jsonnull/aleamancer?branch=master)
 [![Discord](https://img.shields.io/badge/discord-%23aleamancer-blue.svg)](https://discord.gg/nA76N9d)
 [![Greenkeeper badge](https://badges.greenkeeper.io/jsonnull/aleamancer.svg)](https://greenkeeper.io/)
 

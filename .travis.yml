@@ -6,7 +6,7 @@ before_install: yarn global add greenkeeper-lockfile@1
 before_script: greenkeeper-lockfile-update
 script:
 - npm run flow
-- npm run test
+- npm run test:coverage
 - npm run build
 - npm run lint
 after_script: greenkeeper-lockfile-upload
