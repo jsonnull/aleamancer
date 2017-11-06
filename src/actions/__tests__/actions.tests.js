@@ -5,6 +5,14 @@ import type { UserPreferencesState } from 'reducers/user/preferences'
 import type { UserDataState } from 'reducers/user/data'
 
 describe('actions', () => {
+  it('should create an action to send a message', () => {
+    const text = 'message text'
+    expect(actions.sendMessage(text)).toEqual({
+      type: 'SEND_MESSAGE',
+      text
+    })
+  })
+
   it('should create an action to receive a message', () => {
     const message = {
       key: 'key',
