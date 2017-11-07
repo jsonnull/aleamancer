@@ -1,30 +1,10 @@
 // @flow
-import firebase from '@firebase/app'
-import '@firebase/auth'
-import { put, call, takeEvery } from 'redux-saga/effects'
+import { take, call } from 'redux-saga/effects'
+import { PERFORM_USER_LOGIN } from 'actions/types'
 
-type LoginAction = {
-  type: 'PERFORM_USER_LOGIN',
-  email: string,
-  password: string
-}
-
-function* loginWithEmailAndPassword(action: LoginAction): Generator<*, *, *> {
-  const signIn = () =>
-    new Promise((resolve, reject) => {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(action.email, action.password)
-        .then(resolve)
-        .catch(reject)
-    })
-  try {
-    const user = yield call(signIn)
-  } catch (error) {
-    console.log('there was an error')
+export default function* login(loginFunction: Function): Generator<*, *, *> {
+  while (true) {
+    const action = yield take(PERFORM_USER_LOGIN)
+    yield call(loginFunction, action)
   }
-}
-
-export default function* login(): Generator<*, *, *> {
-  yield takeEvery('PERFORM_USER_LOGIN', loginWithEmailAndPassword)
 }
