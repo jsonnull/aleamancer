@@ -43,4 +43,4 @@ export type SessionList = {
 
 export type ThemeName = 'light' | 'dark'
 
-export type Tab = 'Session' | 'Character' | 'Sessions'
+export type Tab = 'Session' | 'Character'
