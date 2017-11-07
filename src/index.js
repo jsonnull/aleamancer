@@ -40,7 +40,7 @@ const render = Component => {
 render(App)
 
 if (module.hot) {
-  ;(module.hot: any).accept('App', () => {
+  ;(module.hot: any).accept('containers/App', () => {
     render(App)
   })
 }
