@@ -1,4 +1,5 @@
 // @flow
+import * as types from 'actions/types'
 import type { Action } from '../actions/types'
 import type { Message } from 'types'
 
@@ -11,7 +12,7 @@ export default function reducer(
   action: Action
 ) {
   switch (action.type) {
-    case 'RECEIVE_MESSAGE':
+    case types.RECEIVE_MESSAGE:
       const message = action.message
       const isMessageInState =
         state.findIndex(el => el.key === message.key) !== -1

@@ -1,8 +1,8 @@
 // @flow
+import * as types from 'actions/types'
 import type { Action } from 'actions/types'
 import type { SessionInfo } from 'types'
 
-// TODO: Fix add sessions type
 export type UserDataState = {
   userSessions: {
     [key: string]: SessionInfo
@@ -18,9 +18,9 @@ export default function reducer(
   action: Action
 ) {
   switch (action.type) {
-    case 'HYDRATE_USER_DATA':
+    case types.HYDRATE_USER_DATA:
       return { ...state, ...action.user }
-    case 'HYDRATE_SESSION_META':
+    case types.HYDRATE_SESSION_META:
       const { meta, userSessionId } = action
       return {
         ...state,

@@ -1,4 +1,5 @@
 // @flow
+import * as types from 'actions/types'
 import type { Action } from '../../actions/types'
 import type { ThemeName } from 'types'
 
@@ -17,11 +18,11 @@ export default function reducer(
   action: Action
 ) {
   switch (action.type) {
-    case 'CHANGE_THEME':
+    case types.CHANGE_THEME:
       return { ...state, theme: action.theme }
-    case 'TOGGLE_CHAT_PIN':
+    case types.TOGGLE_CHAT_PIN:
       return { ...state, chatPinned: !state.chatPinned }
-    case 'HYDRATE_PREFERENCES':
+    case types.HYDRATE_PREFERENCES:
       const { theme, chatPinned } = action.prefs
       return { ...state, theme, chatPinned }
     default:

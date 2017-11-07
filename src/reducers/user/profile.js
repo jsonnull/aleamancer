@@ -1,4 +1,5 @@
 // @flow
+import * as types from 'actions/types'
 import type { Action } from '../../actions/types'
 
 export type UserProfileState = {
@@ -16,10 +17,10 @@ export default function reducer(
   action: Action
 ) {
   switch (action.type) {
-    case 'UPDATE_USER_PROFILE':
-    case 'HYDRATE_USER_PROFILE':
+    case types.UPDATE_USER_PROFILE:
+    case types.HYDRATE_USER_PROFILE:
       return { ...state, ...action.user }
-    case 'CHANGE_DISPLAY_NAME':
+    case types.CHANGE_DISPLAY_NAME:
       return { ...state, displayName: action.name }
     default:
       return state

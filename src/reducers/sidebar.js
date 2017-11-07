@@ -1,4 +1,5 @@
 // @flow
+import * as types from '../actions/types'
 import type { Action } from '../actions/types'
 import type { Tab } from '../types'
 
@@ -19,7 +20,7 @@ export default function reducer(
   action: Action
 ) {
   switch (action.type) {
-    case 'CHANGE_SIDEBAR_TAB':
+    case types.CHANGE_SIDEBAR_TAB:
       return { ...state, tab: action.tab }
     default:
       return state

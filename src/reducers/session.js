@@ -1,4 +1,5 @@
 // @flow
+import * as types from '../actions/types'
 import type { Action } from '../actions/types'
 
 export type SessionState = {
@@ -14,7 +15,7 @@ export default function reducer(
   action: Action
 ) {
   switch (action.type) {
-    case 'HYDRATE_SESSION':
+    case types.HYDRATE_SESSION:
       return { ...state, ...action.session }
     default:
       return state
