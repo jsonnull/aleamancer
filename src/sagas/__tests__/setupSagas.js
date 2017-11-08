@@ -6,8 +6,7 @@ import loadSessionMeta from '../loadSessionMeta'
 import loadSessions from '../loadSessions'
 import loadUserPreferences from '../loadUserPreferences'
 import loadUserProfile from '../loadUserProfile'
-import login from '../login'
-import logout from '../logout'
+import loginFlow from '../loginFlow'
 import receiveMessages from '../receiveMessages'
 import saveUserPreferences from '../saveUserPreferences'
 import saveUserProfile from '../saveUserProfile'
@@ -23,8 +22,7 @@ export default function* rootSaga(): Generator<*, *, *> {
   // yield fork(loadSessions)
   // yield fork(loadUserPreferences)
   // yield fork(loadUserProfile)
-  yield fork(login, loginFunction)
-  yield fork(logout, logoutFunction)
+  yield fork(loginFlow, loginFunction, logoutFunction)
   // yield fork(receiveMessages)
   // yield fork(saveUserPreferences)
   // yield fork(saveUserProfile)
