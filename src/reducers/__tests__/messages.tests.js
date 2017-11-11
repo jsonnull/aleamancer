@@ -20,12 +20,7 @@ describe('messages reducer', () => {
   }
   it('should handle RECEIVE_MESSAGE', () => {
     expect(reduce(undefined, receiveMessage(message))).toEqual(
-      expect.arrayContaining([
-        {
-          key: 'test',
-          text: 'text'
-        }
-      ])
+      expect.arrayContaining([message])
     )
   })
 
