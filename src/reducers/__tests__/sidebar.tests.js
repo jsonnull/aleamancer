@@ -15,7 +15,7 @@ describe('sidebar reducer', () => {
   })
 
   it('should handle CHANGE_SIDEBAR_TAB', () => {
-    expect(reduce(undefined, changeSidebarTab('test'))).toEqual({
+    expect(reduce(undefined, changeSidebarTab('Character'))).toEqual({
       ...DEFAULT_STATE,
       tab: 'test'
     })

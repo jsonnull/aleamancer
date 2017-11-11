@@ -1,6 +1,7 @@
 // @flow
 import reduce from '../data'
 import { hydrateUserData, hydrateSessionMeta } from 'actions'
+import type { SessionMeta } from 'types'
 
 const INIT_ACTION = { type: '@@INIT' }
 
@@ -16,8 +17,8 @@ describe('user data reducer', () => {
   it('should handle HYDRATE_USER_DATA', () => {
     const userData = {
       userSessions: {
-        session1: {},
-        session2: {}
+        session1: { sessionId: 'session1' },
+        session2: { sessionId: 'session2' }
       }
     }
 
@@ -25,15 +26,16 @@ describe('user data reducer', () => {
   })
 
   it('should handle HYDRATE_SESSION_META', () => {
-    const state = { userSessions: { session1: {} } }
+    const state = { userSessions: { session1: { sessionId: 'session1' } } }
+    const sessionMeta: SessionMeta = { name: 'test' }
 
     const finalState = reduce(
       state,
-      hydrateSessionMeta('session1', { test: 'test' })
+      hydrateSessionMeta('session1', sessionMeta)
     )
 
     expect(finalState).toEqual({
-      userSessions: { session1: { meta: { test: 'test' } } }
+      userSessions: { session1: { sessionId: 'session1', meta: sessionMeta } }
     })
   })
 })

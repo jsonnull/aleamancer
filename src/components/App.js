@@ -40,7 +40,7 @@ const Game = () => (
   </GameInner>
 )
 
-type Props = {
+export type Props = {
   appIsLoading: boolean,
   userIsLoggedIn: boolean,
   showSettings: boolean,

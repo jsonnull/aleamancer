@@ -24,7 +24,7 @@ const Input = styled.textarea.attrs({
 
 type Props = {
   onSend: Function,
-  isPinend: boolean
+  isPinned: boolean
 }
 
 type State = {

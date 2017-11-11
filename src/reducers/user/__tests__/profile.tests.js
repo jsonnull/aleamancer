@@ -21,21 +21,25 @@ describe('user profile reducer', () => {
 
   it('should handle UPDATE_USER_PROFILE', () => {
     const profile = {
-      displayName: 'test'
+      displayName: 'test',
+      photoURL: ''
     }
     expect(reduce(undefined, updateUserProfile(profile))).toEqual({
       ...DEFAULT_STATE,
-      displayName: 'test'
+      displayName: 'test',
+      photoURL: ''
     })
   })
 
   it('should handle HYDRATE_USER_PROFILE', () => {
     const profile = {
-      displayName: 'test'
+      displayName: 'test',
+      photoURL: ''
     }
     expect(reduce(undefined, hydrateUserProfile(profile))).toEqual({
       ...DEFAULT_STATE,
-      displayName: 'test'
+      displayName: 'test',
+      photoURL: ''
     })
   })
 

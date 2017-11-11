@@ -11,10 +11,15 @@ describe('messages reducer', () => {
     expect(reduce(undefined, INIT_ACTION)).toEqual(DEFAULT_STATE)
   })
 
+  const message = {
+    key: 'unique',
+    from: 'test1',
+    text: 'messageText',
+    timestamp: 0,
+    result: undefined
+  }
   it('should handle RECEIVE_MESSAGE', () => {
-    expect(
-      reduce(undefined, receiveMessage({ key: 'test', text: 'text' }))
-    ).toEqual(
+    expect(reduce(undefined, receiveMessage(message))).toEqual(
       expect.arrayContaining([
         {
           key: 'test',
@@ -25,8 +30,6 @@ describe('messages reducer', () => {
   })
 
   it('should not allow duplicate messages', () => {
-    const message = { key: 'unique' }
-
     const state = reduce([], receiveMessage(message))
     const finalState = reduce(state, receiveMessage(message))
 

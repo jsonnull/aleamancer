@@ -1,17 +1,20 @@
 // @flow
 import React from 'react'
 import { connect } from 'react-redux'
-import { withTheme } from 'styled-components'
 import Settings from 'components/Settings'
 import { changeTheme, changeDisplayName } from 'actions'
+import * as themes from 'styles/themes'
 import type { ThemeName } from 'types'
+import type { Theme } from 'styles/themes'
 import type { State } from 'store'
 
 export type StateProps = {
+  theme: Theme,
   displayName: string,
   showSettings: boolean
 }
 const mapStateToProps = (state: State): StateProps => ({
+  theme: themes[state.user.preferences.theme],
   displayName: state.user.profile.displayName,
   showSettings: state.ui.showSettings
 })
@@ -29,4 +32,4 @@ const mapDispatchToProps = (dispatch: Function): DispatchProps => ({
   dismissSettings: () => dispatch({ type: 'HIDE_SETTINGS' })
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTheme(Settings))
+export default connect(mapStateToProps, mapDispatchToProps)(Settings)

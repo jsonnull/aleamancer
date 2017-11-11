@@ -28,6 +28,7 @@ export const SWITCH_TO_SESSION = 'SWITCH_TO_SESSION'
 export const CHANGE_SIDEBAR_TAB = 'CHANGE_SIDEBAR_TAB'
 
 export type Action =
+  | { type: '@@INIT' }
   /* Messages */
   | { type: 'LOAD_MESSAGES' }
   | { type: 'SEND_MESSAGE', text: string }

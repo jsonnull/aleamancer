@@ -9,7 +9,7 @@ import {
 export default function* login(
   loginFunction: Function,
   logoutFunction: Function
-): Generator {
+): Generator<*, *, *> {
   while (true) {
     const loginAction = yield take(PERFORM_USER_LOGIN)
     yield call(loginFunction, loginAction)

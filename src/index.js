@@ -33,7 +33,7 @@ const render = Component => {
         </ConnectedRouter>
       </Provider>
     </AppContainer>,
-    document.getElementById('root')
+    ((document.getElementById('root'): any): Element)
   )
 }
 
