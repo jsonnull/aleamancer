@@ -1,64 +1,65 @@
 // @flow
-import firebase from '@firebase/app'
-import '@firebase/database'
 import { eventChannel } from 'redux-saga'
 import { take, put, select, fork, cancel, cancelled } from 'redux-saga/effects'
 import selectCurrentSessionId from 'selectors/sessionId'
 import { hydrateSession } from 'actions'
+import {
+  USER_LOGGED_IN,
+  USER_LOGGED_OUT,
+  SWITCH_TO_SESSION
+} from 'actions/types'
 import type { Action } from 'actions/types'
+import type { SessionSubscription } from 'firebase/types'
 
-function createSubscription(sessionId: string) {
-  const subscription = eventChannel(emit => {
-    const ref = firebase.database().ref(`sessions/${sessionId}`)
+function* subscribeToSession(
+  session: SessionSubscription
+): Generator<Object, *, *> {
+  const channel = eventChannel(emit => {
+    // Emit on new data
+    session.onSessionData(emit)
 
-    ref.on('value', sessionSnapshot => {
-      emit(sessionSnapshot.val())
-    })
-
-    return () => {
-      ref.off()
-    }
+    // Return the cancellation
+    return () => session.close()
   })
-
-  return subscription
-}
-
-function* subscribeToSession(sessionId): Generator<Object, *, *> {
-  console.log(`subscribing to session ${sessionId}`)
-  const subscription = createSubscription(sessionId)
 
   try {
     while (true) {
-      const sessionData = yield take(subscription)
+      const sessionData = yield take(channel)
       yield put(hydrateSession(sessionData))
     }
   } finally {
     if (yield cancelled()) {
-      console.log('closing subscription')
-      subscription.close()
+      channel.close()
     }
   }
 }
 
-export default function* loadCurrentSession(): Generator<*, *, *> {
+type CreateSessionFunction = (sessionId: string) => SessionSubscription
+
+export default function* loadCurrentSession(
+  createSession: CreateSessionFunction
+): Generator<*, *, *> {
   let currentSubscription = null
   let currentSessionId = null
 
   while (true) {
     const action: Action = yield take([
-      'USER_LOGGED_IN',
-      'SWITCH_TO_SESSION',
-      'USER_LOGGED_OUT'
+      USER_LOGGED_IN,
+      SWITCH_TO_SESSION,
+      USER_LOGGED_OUT
     ])
 
-    if (action.type === 'USER_LOGGED_OUT' && currentSubscription) {
-      yield cancel(currentSubscription)
+    // If the user is logging out, cancel any ongoing subscriptions and be done
+    if (action.type === USER_LOGGED_OUT) {
+      if (currentSubscription) {
+        yield cancel(currentSubscription)
+      }
       continue
     }
 
     // Find out what the target session id is
     let newSessionId = yield select(selectCurrentSessionId)
-    if (action.type === 'SWITCH_TO_SESSION') {
+    if (action.type === SWITCH_TO_SESSION) {
       newSessionId = action.sessionId
     }
 
@@ -70,7 +71,10 @@ export default function* loadCurrentSession(): Generator<*, *, *> {
       }
 
       currentSessionId = newSessionId
-      currentSubscription = yield fork(subscribeToSession, newSessionId)
+      currentSubscription = yield fork(
+        subscribeToSession,
+        createSession(newSessionId)
+      )
     }
   }
 }
