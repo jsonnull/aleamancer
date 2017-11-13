@@ -1,25 +1,38 @@
 // @flow
-import setupStore from './setupStore'
-import { loginFunction, logoutFunction } from './setupSagas'
-import { performUserLogin } from 'actions'
-import { PERFORM_USER_LOGOUT } from 'actions/types'
+import { take, call, put } from 'redux-saga/effects'
+import {
+  PERFORM_USER_LOGIN,
+  PERFORM_USER_LOGOUT,
+  USER_LOGGED_OUT
+} from 'actions/types'
+import loginFlow from '../loginFlow'
 
 describe('login saga', () => {
-  const store = setupStore()
+  const loginFunction = () => {}
+  const logoutFunction = () => {}
+  const gen = loginFlow(loginFunction, logoutFunction)
 
-  const loginAction = performUserLogin('test@email.com', 'password')
-  store.dispatch(loginAction)
-
-  it('should respond to PERFORM_USER_LOGIN instruction', () => {
-    expect(loginFunction.calledWith(loginAction)).toBe(true)
+  it('should wait for PERFORM_USER_LOGIN instruction', () => {
+    expect(gen.next().value).toEqual(take(PERFORM_USER_LOGIN))
   })
 
-  store.dispatch({ type: PERFORM_USER_LOGOUT })
-  it('should call logout function', () => {
-    expect(logoutFunction.called).toBe(true)
+  it('should perform login', () => {
+    expect(gen.next().value).toHaveProperty('CALL.fn', loginFunction)
+  })
+
+  it('should wait for PERFORM_USER_LOGOUT instruction', () => {
+    expect(gen.next().value).toEqual(take(PERFORM_USER_LOGOUT))
+  })
+
+  it('should perform logout', () => {
+    expect(gen.next().value).toHaveProperty('CALL.fn', logoutFunction)
   })
 
   it('should report user logged out', () => {
-    expect(store.getState().ui.userIsLoggedIn === false)
+    expect(gen.next().value).toEqual(put({ type: USER_LOGGED_OUT }))
+  })
+
+  it('should continue', () => {
+    expect(gen.next().done).toBe(false)
   })
 })
