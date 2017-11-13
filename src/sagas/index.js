@@ -14,10 +14,11 @@ import switchSessions from './switchSessions'
 import loginFunction from 'firebase/login'
 import logoutFunction from 'firebase/logout'
 import createSession from 'firebase/session'
+import getSessionMeta from 'firebase/sessionMeta'
 
 export default function* rootSaga(): Generator<*, *, *> {
   yield fork(loadCurrentSession, createSession)
-  yield fork(loadSessionMeta)
+  yield fork(loadSessionMeta, getSessionMeta)
   yield fork(loadSessions)
   yield fork(loadUserPreferences)
   yield fork(loadUserProfile)
