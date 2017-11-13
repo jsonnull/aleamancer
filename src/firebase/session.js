@@ -7,7 +7,7 @@ class Session implements SessionSubscription {
   ref: Ref
 
   constructor(sessionId: string) {
-    const ref = firebase.database().ref(`sessions/${sessionId}`)
+    this.ref = firebase.database().ref(`sessions/${sessionId}`)
   }
 
   onSessionData(callback: Function) {
