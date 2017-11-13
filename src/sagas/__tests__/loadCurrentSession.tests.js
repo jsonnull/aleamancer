@@ -1,13 +1,15 @@
 // @flow
-import { take } from 'redux-saga/effects'
-import { cloneableGenerator } from 'redux-saga/utils'
-import { switchToSession } from 'actions'
+import { END } from 'redux-saga'
+import { take, put } from 'redux-saga/effects'
+import { createMockTask, cloneableGenerator } from 'redux-saga/utils'
+import { switchToSession, hydrateSession } from 'actions'
+import createSession from '../../firebase/__mocks__/session'
 import {
   USER_LOGGED_IN,
   USER_LOGGED_OUT,
   SWITCH_TO_SESSION
 } from 'actions/types'
-import loadCurrentSession from '../loadCurrentSession'
+import loadCurrentSession, { subscribeToSession } from '../loadCurrentSession'
 
 describe('loadCurrentSession saga', () => {
   const createSession = () => {}
@@ -32,7 +34,8 @@ describe('loadCurrentSession saga', () => {
   })
 
   it('should be ready for next action', () => {
-    expect(full.next().value).toEqual(
+    const forkedTask = createMockTask()
+    expect(full.next(forkedTask).value).toEqual(
       take([USER_LOGGED_IN, SWITCH_TO_SESSION, USER_LOGGED_OUT])
     )
   })
@@ -40,12 +43,30 @@ describe('loadCurrentSession saga', () => {
   const switchAction = switchToSession('newSessionId')
   it('should be able to switch sessions', () => {
     expect(full.next(switchAction).value).toHaveProperty('SELECT')
-    // Normally it would cancel here, but because the saga middleware is not
-    // running, `currentSubscription` is undefined
+    expect(full.next().value).toHaveProperty('CANCEL')
     expect(full.next().value).toHaveProperty('FORK')
   })
 
   it('should continue', () => {
     expect(full.next().done).toBe(false)
+  })
+})
+
+describe('subscribeToSession generator', () => {
+  const subscription = subscribeToSession(createSession('fakeSessionId'))
+
+  it('should wait for event from the channel', () => {
+    expect(subscription.next().value).toHaveProperty('TAKE')
+  })
+
+  it('should put the session data', () => {
+    const mockSessionData = { data: 'test' }
+    expect(subscription.next(mockSessionData).value).toEqual(
+      put(hydrateSession(mockSessionData))
+    )
+  })
+
+  it('should continue', () => {
+    expect(subscription.next().done).toBe(false)
   })
 })

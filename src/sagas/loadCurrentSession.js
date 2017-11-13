@@ -11,7 +11,7 @@ import {
 import type { Action } from 'actions/types'
 import type { SessionSubscription } from 'firebase/types'
 
-function* subscribeToSession(
+export function* subscribeToSession(
   session: SessionSubscription
 ): Generator<Object, *, *> {
   const channel = eventChannel(emit => {
