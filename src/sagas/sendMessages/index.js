@@ -4,7 +4,7 @@ import '@firebase/database'
 import '@firebase/auth'
 import { call, select, takeEvery } from 'redux-saga/effects'
 import CommandParser from './commandParser'
-import type { FirebaseMessage } from 'types'
+import type { FirebaseMessage } from 'firebase/types'
 
 function* sendMessageWithResult(commandParser, action): Generator<*, *, *> {
   const { text } = action

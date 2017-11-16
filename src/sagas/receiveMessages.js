@@ -1,69 +1,47 @@
 // @flow
-import firebase from '@firebase/app'
-import '@firebase/database'
 import { eventChannel } from 'redux-saga'
 import { put, take, fork, cancel, cancelled } from 'redux-saga/effects'
 import { receiveMessage } from 'actions'
-import type { Message, FirebaseMessage } from 'types'
+import { USER_LOGGED_IN, USER_LOGGED_OUT } from 'actions/types'
+import type { Message } from 'types'
+import type { MessagesSubscription } from 'firebase/types'
 
-function messageFromFirebaseData(data: Object): Message {
-  let firebaseMessage: FirebaseMessage = data.val()
-  const { name, text, result, timestamp } = firebaseMessage
-
-  const message: Message = {
-    key: data.key,
-    from: name,
-    text,
-    result,
-    timestamp
-  }
-
-  return message
-}
-
-function createMessageSubscription() {
+export function* subscribeToMessages(
+  subscription: MessagesSubscription
+): Generator<*, *, *> {
   const listener = eventChannel(emit => {
-    const ref = firebase.database().ref('messages')
-    ref
-      .orderByChild('timestamp')
-      .limitToLast(12)
-      .on('child_added', emit)
-
-    return () => {
-      ref.off()
-    }
+    // Subscribe to message data
+    subscription.onMessageData(emit)
+    // Return a function to close the messages
+    return () => subscription.close()
   })
-
-  return listener
-}
-
-function* subscribeToMessages(): Generator<*, *, *> {
-  const subscription = createMessageSubscription()
 
   try {
     while (true) {
-      const data = yield take(subscription)
-      const message = messageFromFirebaseData(data)
+      const message = yield take(listener)
       yield put(receiveMessage(message))
     }
   } finally {
     if (yield cancelled()) {
-      subscription.close()
+      listener.close()
     }
   }
 }
 
-export default function* receiveMessages(): Generator<*, *, *> {
+export default function* receiveMessages(
+  createMessagesSubscription: () => MessagesSubscription
+): Generator<*, *, *> {
   let currentSubscription = null
 
   while (true) {
     // Listen for changes on user auth
-    const action = yield take(['USER_LOGGED_IN', 'USER_LOGGED_OUT'])
+    const action = yield take([USER_LOGGED_IN, USER_LOGGED_OUT])
 
-    if (action.type === 'USER_LOGGED_IN') {
+    if (action.type === USER_LOGGED_IN) {
       // If user is logged in, create a subscription to messages
-      currentSubscription = yield fork(subscribeToMessages)
-    } else if (action.type === 'USER_LOGGED_OUT') {
+      const subscription = createMessagesSubscription()
+      currentSubscription = yield fork(subscribeToMessages, subscription)
+    } else if (action.type === USER_LOGGED_OUT) {
       // If user is logged out, cancel the subscription
       if (currentSubscription) {
         yield cancel(currentSubscription)
