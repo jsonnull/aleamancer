@@ -1,26 +1,18 @@
 // @flow
-import firebase from '@firebase/app'
-import '@firebase/auth'
-import '@firebase/database'
-import { call, put, takeEvery } from 'redux-saga/effects'
+import { take, call, put } from 'redux-saga/effects'
 import { hydratePreferences } from 'actions'
+import { USER_LOGGED_IN, APP_FINISHED_LOADING } from 'actions/types'
+import type { UserPreferencesState } from 'reducers/user/preferences'
 
-function* loadUserPreferences(): Generator<*, *, *> {
-  const uid = firebase.auth().currentUser.uid
-  const ref = firebase.database().ref(`prefs/${uid}`)
-  const loadPrefs = () =>
-    new Promise((resolve, reject) => {
-      ref
-        .once('value')
-        .then(data => resolve(data.val()))
-        .catch(reject)
-    })
-  const prefs = yield call(loadPrefs)
-  yield put(hydratePreferences(prefs))
-  yield put({ type: 'APP_FINISHED_LOADING' })
-}
+type GetPreferencesFunction = () => Promise<UserPreferencesState>
 
-export default function* loadPreferences(): Generator<*, *, *> {
-  // Wait for user auth to complete
-  yield takeEvery('USER_LOGGED_IN', loadUserPreferences)
+export default function* loadUserPreferences(
+  getUserPreferences: GetPreferencesFunction
+): Generator<*, *, *> {
+  while (true) {
+    yield take(USER_LOGGED_IN)
+    const prefs = yield call(getUserPreferences)
+    yield put(hydratePreferences(prefs))
+    yield put({ type: APP_FINISHED_LOADING })
+  }
 }
