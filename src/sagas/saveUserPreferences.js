@@ -1,17 +1,14 @@
 // @flow
-import firebase from '@firebase/app'
-import '@firebase/database'
-import '@firebase/auth'
-import { call, select, takeEvery } from 'redux-saga/effects'
+import { take, call, select } from 'redux-saga/effects'
+import { CHANGE_THEME, TOGGLE_CHAT_PIN } from 'actions/types'
+import type { UserPreferencesState } from 'reducers/user/preferences'
 
-function* saveLatestPreferences(): Generator<*, *, *> {
-  const uid = firebase.auth().currentUser.uid
-  const ref = firebase.database().ref(`prefs/${uid}`)
-  const savePreferences = preferences => ref.set(preferences)
-  const preferences = yield select(state => state.user.preferences)
-  yield call(savePreferences, preferences)
-}
-
-export default function* saveUserPreferences(): Generator<*, *, *> {
-  yield takeEvery(['CHANGE_THEME', 'TOGGLE_CHAT_PIN'], saveLatestPreferences)
+export default function* saveUserPreferences(
+  savePreferences: (preferences: UserPreferencesState) => void
+): Generator<*, *, *> {
+  while (true) {
+    yield take([CHANGE_THEME, TOGGLE_CHAT_PIN])
+    const preferences = yield select(state => state.user.preferences)
+    yield call(savePreferences, preferences)
+  }
 }
