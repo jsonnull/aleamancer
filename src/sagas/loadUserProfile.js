@@ -1,23 +1,18 @@
 // @flow
-import firebase from '@firebase/app'
-import '@firebase/auth'
-import { put, takeEvery } from 'redux-saga/effects'
+import { take, call, put } from 'redux-saga/effects'
 import { hydrateUserProfile } from 'actions'
+import { USER_LOGGED_IN } from 'actions/types'
+import type { UserProfileState } from 'reducers/user/profile'
 
-function* loadUserProfile(): Generator<*, *, *> {
-  const currentUser = firebase.auth().currentUser
-  const photoURL = currentUser.photoURL
-  const displayName = currentUser.displayName || currentUser.email
+type GetUserProfile = () => UserProfileState
 
-  let user = {
-    displayName,
-    photoURL
-  }
-
-  yield put(hydrateUserProfile(user))
-}
-
-export default function* receiveMessages(): Generator<*, *, *> {
+export default function* loadUserProfile(
+  getUserProfile: GetUserProfile
+): Generator<*, *, *> {
   // Wait for user auth to complete
-  yield takeEvery('USER_LOGGED_IN', loadUserProfile)
+  while (true) {
+    yield take(USER_LOGGED_IN)
+    const user = yield call(getUserProfile)
+    yield put(hydrateUserProfile(user))
+  }
 }
