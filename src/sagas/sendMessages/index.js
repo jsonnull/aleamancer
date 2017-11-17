@@ -3,12 +3,17 @@ import { call, select, takeEvery } from 'redux-saga/effects'
 import CommandParser from './commandParser'
 import { SEND_MESSAGE } from 'actions/types'
 import type { MessageResult } from 'types'
+import type { Action } from 'actions/types'
 
 export function* sendMessageWithResult(
   sendMessage: Function,
   commandParser: CommandParser,
-  action
+  action: Action
 ): Generator<*, *, *> {
+  if (action.type !== SEND_MESSAGE) {
+    return
+  }
+
   const { text } = action
   const name = yield select(state => state.user.profile.displayName)
   const result = commandParser.getMessageResult(text)

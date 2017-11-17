@@ -11,7 +11,7 @@ type SendMessageOpts = {
   result: ?MessageResult
 }
 
-const sendMessage = (opts: SendMessageOpts) => {
+const sendMessage = (opts: SendMessageOpts): Promise<void> => {
   const ref = firebase.database().ref('messages')
 
   const message: FirebaseMessage = {

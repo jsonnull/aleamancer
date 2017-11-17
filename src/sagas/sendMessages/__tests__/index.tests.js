@@ -9,7 +9,7 @@ const mockSendMessage = () => {}
 const commandParser = new CommandParser()
 
 describe('sendMessageWithResult generator', () => {
-  const mockAction = { type: SEND_MESSAGE, text: 'test' }
+  const mockAction = { type: 'SEND_MESSAGE', text: 'test' }
   const mockName = 'user'
   const gen = sendMessageWithResult(mockSendMessage, commandParser, mockAction)
 
