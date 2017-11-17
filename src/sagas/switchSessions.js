@@ -4,6 +4,8 @@ import { put, select, takeEvery } from 'redux-saga/effects'
 import sessionIdSelector from 'selectors/sessionId'
 import { push } from 'react-router-redux'
 import { changeSidebarTab } from 'actions'
+import { SWITCH_TO_SESSION } from 'actions/types'
+import type { Action } from 'actions/types'
 import type { SessionList, SessionInfo } from 'types'
 
 // FIXME: remove duplicate entry elsewhere
@@ -13,7 +15,11 @@ function sessionListToArray(sessions: SessionList): Array<SessionInfo> {
   return arr
 }
 
-function* switchToSession(action): Generator<*, *, *> {
+export function* switchToSession(action: Action): Generator<*, *, *> {
+  if (action.type !== SWITCH_TO_SESSION) {
+    return
+  }
+
   const sessionId = action.sessionId
   const currentSessionId = yield select(sessionIdSelector)
 
@@ -36,5 +42,5 @@ function* switchToSession(action): Generator<*, *, *> {
 }
 
 export default function* switchSessions(): Generator<*, *, *> {
-  yield takeEvery('SWITCH_TO_SESSION', switchToSession)
+  yield takeEvery(SWITCH_TO_SESSION, switchToSession)
 }
