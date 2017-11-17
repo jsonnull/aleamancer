@@ -23,6 +23,7 @@ import createMessagesSubscription from 'firebase/messages'
 import savePreferences from 'firebase/savePreferences'
 import getCurrentUserEmail from 'firebase/getCurrentUserEmail'
 import saveProfile from 'firebase/saveProfile'
+import sendMessage from 'firebase/sendMessage'
 
 export default function* rootSaga(): Generator<*, *, *> {
   yield fork(loadCurrentSession, createSession)
@@ -34,6 +35,6 @@ export default function* rootSaga(): Generator<*, *, *> {
   yield fork(receiveMessages, createMessagesSubscription)
   yield fork(saveUserPreferences, savePreferences)
   yield fork(saveUserProfile, getCurrentUserEmail, saveProfile)
-  yield fork(sendMessages)
+  yield fork(sendMessages, sendMessage)
   yield fork(switchSessions)
 }

@@ -1,37 +1,31 @@
 // @flow
-import firebase from '@firebase/app'
-import '@firebase/database'
-import '@firebase/auth'
 import { call, select, takeEvery } from 'redux-saga/effects'
 import CommandParser from './commandParser'
-import type { FirebaseMessage } from 'firebase/types'
+import { SEND_MESSAGE } from 'actions/types'
+import type { MessageResult } from 'types'
 
-function* sendMessageWithResult(commandParser, action): Generator<*, *, *> {
+export function* sendMessageWithResult(
+  sendMessage: Function,
+  commandParser: CommandParser,
+  action
+): Generator<*, *, *> {
   const { text } = action
-  const ref = firebase.database().ref('messages')
-
   const name = yield select(state => state.user.profile.displayName)
   const result = commandParser.getMessageResult(text)
 
-  const message: FirebaseMessage = {
-    name,
-    text,
-    result,
-    timestamp: firebase.database.ServerValue.TIMESTAMP
-  }
+  const messageOptions = { text, name, result }
 
-  const sendMessage = () =>
-    new Promise((resolve, reject) => {
-      ref
-        .push(message)
-        .then(resolve)
-        .catch(reject)
-    })
-
-  yield call(sendMessage)
+  yield call(sendMessage, messageOptions)
 }
 
-export default function* sendMessages(): Generator<*, *, *> {
+export default function* sendMessages(
+  sendMessage: Function
+): Generator<*, *, *> {
   const commandParser = new CommandParser()
-  yield takeEvery('SEND_MESSAGE', sendMessageWithResult, commandParser)
+  yield takeEvery(
+    SEND_MESSAGE,
+    sendMessageWithResult,
+    sendMessage,
+    commandParser
+  )
 }
