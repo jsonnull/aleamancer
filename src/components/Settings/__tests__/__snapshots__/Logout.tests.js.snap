@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Settings Logout component renders correctly 1`] = `
+<div
+  className="sc-bwzfXH RlJjI"
+>
+  <button
+    className="sc-bdVaJa gyRotp"
+    onClick={[Function]}
+  >
+    Logout
+  </button>
+</div>
+`;

@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Settings ThemeSwitcher component renders correctly 1`] = `
+<div>
+  <label
+    className="sc-bdVaJa eHwgaL"
+  >
+    Theme
+  </label>
+  <div
+    className="sc-bxivhb iamvSI"
+  >
+    <button
+      className="sc-bwzfXH cYzoFg"
+      onClick={[Function]}
+    >
+      Light
+    </button>
+    <button
+      className="sc-htpNat fzgoAl"
+      onClick={[Function]}
+    >
+      Dark
+    </button>
+  </div>
+</div>
+`;

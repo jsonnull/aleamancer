@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Settings Name component renders correctly 1`] = `
+<div>
+  <label
+    className="sc-bdVaJa eHwgaL"
+  >
+    Display Name:
+  </label>
+  <div
+    className="sc-bxivhb eiqJAG"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    name
+  </div>
+</div>
+`;

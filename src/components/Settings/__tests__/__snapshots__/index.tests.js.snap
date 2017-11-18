@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Settings component renders correctly 1`] = `
+<div
+  className="sc-bdVaJa hGAKWv"
+>
+  <div
+    className="sc-bwzfXH kELLZF"
+  >
+    <div>
+      <div>
+        <label
+          className="sc-ifAKCX cmPjpt"
+        >
+          Display Name:
+        </label>
+        <div
+          className="sc-gzVnrw csXZdG"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          test
+        </div>
+      </div>
+      <div>
+        <label
+          className="sc-ifAKCX cmPjpt"
+        >
+          Theme
+        </label>
+        <div
+          className="sc-iwsKbI SIqHi"
+        >
+          <button
+            className="sc-htpNat eKDpsT"
+            onClick={[Function]}
+          >
+            Light
+          </button>
+          <button
+            className="sc-dnqmqq eRYZVa"
+            onClick={[Function]}
+          >
+            Dark
+          </button>
+        </div>
+      </div>
+      <div
+        className="sc-bxivhb bIqXCY"
+      >
+        <button
+          className="sc-htpNat bnmVIn"
+          onClick={[Function]}
+        >
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
