@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sessions ListItem component renders correctly 1`] = `
+<div
+  className="sc-htpNat hpQGuX"
+  onClick={[Function]}
+>
+  <div>
+    <div
+      className="sc-bwzfXH cIzktr"
+    >
+      testName
+    </div>
+    <div
+      className="sc-bdVaJa jGqIIH"
+    >
+      Current
+    </div>
+  </div>
+</div>
+`;

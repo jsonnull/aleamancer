@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sessions component renders correctly 1`] = `
+<div
+  className="sc-gzVnrw cYFRFJ"
+>
+  <div
+    className="sc-htoDjs gLJSLM"
+  >
+    <h1
+      className="sc-dnqmqq edWNDw"
+    >
+      Your Games
+    </h1>
+    <div
+      className="sc-bZQynM dttqFH"
+    >
+      <div
+        className="sc-ifAKCX fSbxWk"
+        onClick={[Function]}
+      >
+        <div>
+          <div
+            className="sc-bxivhb hofviZ"
+          >
+            testName
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      className="sc-bwzfXH ivxQvV"
+      onClick={[Function]}
+    >
+      Create Game
+    </button>
+  </div>
+</div>
+`;

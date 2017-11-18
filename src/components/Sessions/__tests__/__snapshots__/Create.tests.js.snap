@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sessions Create component renders correctly 1`] = `
+<button
+  className="sc-bwzfXH ivxQvV"
+  onClick={[Function]}
+>
+  Create Game
+</button>
+`;
