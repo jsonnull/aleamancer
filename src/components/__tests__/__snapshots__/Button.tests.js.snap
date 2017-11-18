@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button component renders correctly with green option set 1`] = `
+<button
+  className="sc-bdVaJa jMuSlE"
+/>
+`;
+
+exports[`Button component renders correctly with no options 1`] = `
+<button
+  className="sc-bdVaJa gXXZoz"
+/>
+`;
+
+exports[`Button component renders correctly with outline option set 1`] = `
+<button
+  className="sc-bdVaJa giJqZv"
+/>
+`;
+
+exports[`Button component renders correctly with red option set 1`] = `
+<button
+  className="sc-bdVaJa gyRotp"
+/>
+`;

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal component renders correctly 1`] = `
+<div
+  className="sc-bdVaJa hGAKWv"
+>
+  <div
+    className="sc-bwzfXH kELLZF"
+  />
+</div>
+`;
+
+exports[`Modal component renders correctly when no background option is set 1`] = `
+<div
+  className="sc-bwzfXH kELLZF"
+/>
+`;
