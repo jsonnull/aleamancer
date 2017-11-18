@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chat component renders correctly 1`] = `
+<div
+  className="sc-fjdhpX hOOwYp"
+>
+  <div
+    className="sc-bdVaJa dMsinD"
+  >
+    <div
+      className="sc-bwzfXH ellkeL"
+      onClick={[Function]}
+    >
+      <i
+        className="fa fa-thumb-tack"
+      />
+    </div>
+  </div>
+  <div
+    className="sc-gqjmRU kAhgIM"
+  >
+    <div
+      className="sc-VigVT fyGJxB"
+    />
+  </div>
+  <form
+    className="sc-bxivhb bUZGRr"
+  >
+    <textarea
+      className="sc-ifAKCX joFSSx"
+      onChange={[Function]}
+      onKeyUp={[Function]}
+      placeholder="Send a message..."
+      style={Object {}}
+      type="text"
+      value=""
+    />
+  </form>
+  <div
+    className="sc-htpNat iUerdU"
+  >
+    /roll 1d6, 
+    <strong>
+      *bold*
+    </strong>
+     
+    <em>
+      _italic_
+    </em>
+  </div>
+</div>
+`;

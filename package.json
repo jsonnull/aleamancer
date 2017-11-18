@@ -47,6 +47,8 @@
     "babel-preset-minify": "^0.2.0",
     "babel-preset-react": "^6.24.1",
     "coveralls": "^3.0.0",
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
     "eslint": "^4.10.0",
     "eslint-loader": "^1.7.1",
     "eslint-plugin-flowtype": "^2.32.1",
@@ -60,6 +62,7 @@
     "jest": "^21.2.1",
     "lint-staged": "^4.2.3",
     "raw-loader": "^0.5.1",
+    "react-test-renderer": "^16.1.1",
     "sinon": "^4.1.2",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.4.2"
@@ -68,6 +71,10 @@
     "*.{js,json,css}": ["prettier --write", "git add"]
   },
   "jest": {
+    "setupFiles": [
+      "<rootDir>/setupTests/shim.js",
+      "<rootDir>/setupTests/setup.js"
+    ],
     "testMatch": ["**/__tests__/**/*.tests.js?(x)"],
     "moduleDirectories": ["node_modules"],
     "modulePaths": ["<rootDir>/src/"],

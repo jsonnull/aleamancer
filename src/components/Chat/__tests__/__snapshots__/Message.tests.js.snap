@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chat Message component renders correctly 1`] = `
+<div
+  className="sc-bxivhb fnwWSa"
+>
+  <div
+    className="sc-ifAKCX hbzCmC"
+  >
+    testUser
+     
+    <span
+      className="sc-EHOje bYRfKY"
+      title={1970-01-01T00:00:00.000Z}
+    >
+      47 years ago
+    </span>
+  </div>
+  <div
+    className="sc-bZQynM fGrdpW"
+  >
+    text
+  </div>
+</div>
+`;

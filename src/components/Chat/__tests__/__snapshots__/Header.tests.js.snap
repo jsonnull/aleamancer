@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chat header component renders correctly 1`] = `
+<div
+  className="sc-bdVaJa dMsinD"
+>
+  <div
+    className="sc-bwzfXH ellkeL"
+    onClick={[Function]}
+  >
+    <i
+      className="fa fa-thumb-tack"
+    />
+  </div>
+</div>
+`;

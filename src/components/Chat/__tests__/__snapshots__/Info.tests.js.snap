@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chat Info component renders correctly 1`] = `
+<div
+  className="sc-bdVaJa hKYDov"
+>
+  /roll 1d6, 
+  <strong>
+    *bold*
+  </strong>
+   
+  <em>
+    _italic_
+  </em>
+</div>
+`;

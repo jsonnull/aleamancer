@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chat MessageList component renders correctly 1`] = `
+<div
+  className="sc-gzVnrw jGypmO"
+>
+  <div
+    className="sc-htoDjs gtCpCC"
+  />
+</div>
+`;

@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chat MessageResult component renders correctly 1`] = `
+<div
+  className="sc-bwzfXH dslxFQ"
+>
+  <i
+    className="fa fa-cube"
+  />
+   
+  <span>
+    <span>
+      
+      <span
+        className="sc-bdVaJa hCboOS"
+        style={
+          Object {
+            "color": "inherit",
+          }
+        }
+      >
+        4
+      </span>
+    </span>
+  </span>
+   = 
+  <span
+    className="sc-htpNat joRjxB"
+  >
+    4
+  </span>
+</div>
+`;
