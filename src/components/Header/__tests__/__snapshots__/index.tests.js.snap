@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component renders correctly 1`] = `
+<div
+  className="sc-ifAKCX gbtnXH"
+>
+  <div
+    className="sc-EHOje iVzqUm"
+  >
+    <div
+      className="sc-bdVaJa kgrFwP"
+      onClick={[Function]}
+    >
+      <i
+        className="fa fa-home"
+      />
+    </div>
+  </div>
+  <div
+    className="sc-EHOje iVzqUm"
+  >
+    <div
+      className="sc-htpNat gYJyLH"
+    >
+      <div
+        className="sc-bwzfXH dXutcX"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": Object {},
+          }
+        }
+        height="12px"
+      />
+    </div>
+  </div>
+  <div
+    className="sc-bZQynM dLyoOX"
+  >
+    <div
+      className="sc-bxivhb lhzAFC"
+    >
+      test
+    </div>
+    <div
+      className="sc-bdVaJa kgrFwP"
+      onClick={[Function]}
+    >
+      <i
+        className="fa fa-cog"
+      />
+    </div>
+  </div>
+</div>
+`;

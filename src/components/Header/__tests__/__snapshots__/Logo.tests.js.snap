@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Logo component renders correctly 1`] = `
+<div
+  className="sc-htpNat gYJyLH"
+>
+  <div
+    className="sc-bwzfXH dXutcX"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": Object {},
+      }
+    }
+    height="12px"
+  />
+</div>
+`;

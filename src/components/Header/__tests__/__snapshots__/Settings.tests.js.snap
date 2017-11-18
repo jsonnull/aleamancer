@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Settings component renders correctly 1`] = `
+<div
+  className="sc-bdVaJa kgrFwP"
+  onClick={[Function]}
+>
+  <i
+    className="fa fa-cog"
+  />
+</div>
+`;
