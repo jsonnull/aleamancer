@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component renders correctly when loading 1`] = `
+<ThemeProvider
+  theme={
+    Object {
+      "background": "#f7f7f7",
+      "backgroundInverted": "#3c3c3c",
+      "backgroundInvertedSecondary": "#555",
+      "backgroundSecondary": "#ebe3d6",
+      "borderColor": "#cdc5ba",
+      "color": "black",
+      "colorInverted": "#f7f7f7",
+      "colorMedium": "#999",
+      "colorSecondary": "#3c3c3c",
+      "map": "#bfbca5",
+      "name": "light",
+    }
+  }
+>
+  <LoadingModal />
+</ThemeProvider>
+`;
+
+exports[`App component renders correctly when settings should be showing 1`] = `
+<ThemeProvider
+  theme={
+    Object {
+      "background": "#f7f7f7",
+      "backgroundInverted": "#3c3c3c",
+      "backgroundInvertedSecondary": "#555",
+      "backgroundSecondary": "#ebe3d6",
+      "borderColor": "#cdc5ba",
+      "color": "black",
+      "colorInverted": "#f7f7f7",
+      "colorMedium": "#999",
+      "colorSecondary": "#3c3c3c",
+      "map": "#bfbca5",
+      "name": "light",
+    }
+  }
+>
+  <styled.div>
+    <Connect(Header) />
+    <Switch>
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/"
+      />
+      <Route
+        component={[Function]}
+        path="/g/:id/"
+      />
+    </Switch>
+    <Connect(Settings) />
+  </styled.div>
+</ThemeProvider>
+`;
+
+exports[`App component renders correctly when user is logged in 1`] = `
+<ThemeProvider
+  theme={
+    Object {
+      "background": "#f7f7f7",
+      "backgroundInverted": "#3c3c3c",
+      "backgroundInvertedSecondary": "#555",
+      "backgroundSecondary": "#ebe3d6",
+      "borderColor": "#cdc5ba",
+      "color": "black",
+      "colorInverted": "#f7f7f7",
+      "colorMedium": "#999",
+      "colorSecondary": "#3c3c3c",
+      "map": "#bfbca5",
+      "name": "light",
+    }
+  }
+>
+  <styled.div>
+    <Connect(Header) />
+    <Switch>
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/"
+      />
+      <Route
+        component={[Function]}
+        path="/g/:id/"
+      />
+    </Switch>
+  </styled.div>
+</ThemeProvider>
+`;
