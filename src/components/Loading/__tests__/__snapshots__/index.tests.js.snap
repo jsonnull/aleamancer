@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading component renders correctly 1`] = `
+<div
+  className="sc-bwzfXH fYVOJF"
+>
+  <div
+    className="sc-htpNat hCygIt"
+  >
+    <div
+      className="sc-bxivhb xOdwj"
+    >
+      <div
+        className="sc-bdVaJa cNYobl"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": Object {},
+          }
+        }
+        height="25px"
+      />
+    </div>
+    <img
+      className="sc-ifAKCX hMvoTu"
+      src={Object {}}
+    />
+  </div>
+</div>
+`;
