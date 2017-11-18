@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sidebar Menu component renders correctly 1`] = `
+<div
+  className="sc-bwzfXH dGbwvG"
+>
+  <div
+    className="sc-bdVaJa doSZDF"
+    onClick={[Function]}
+    selected={true}
+  >
+    <i
+      className="fa fa-globe"
+    />
+  </div>
+  <div
+    className="sc-bdVaJa dRxInu"
+    onClick={[Function]}
+    selected={false}
+  >
+    <i
+      className="fa fa-id-card-o"
+    />
+  </div>
+</div>
+`;

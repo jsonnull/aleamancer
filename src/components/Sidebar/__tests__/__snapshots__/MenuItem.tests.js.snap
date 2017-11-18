@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sidebar MenuItem component renders correctly 1`] = `
+<div
+  className="sc-bdVaJa doSZDF"
+  onClick={[Function]}
+  selected={true}
+>
+  <i
+    className="fa icon"
+  />
+</div>
+`;

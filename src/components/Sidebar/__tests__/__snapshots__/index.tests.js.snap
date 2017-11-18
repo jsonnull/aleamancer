@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sidebar component renders correctly 1`] = `
+<styled.div>
+  <styled.div>
+    <styled.h1>
+      name
+    </styled.h1>
+    <Menu
+      changeTab={[Function]}
+      tab="Session"
+    />
+  </styled.div>
+  <styled.div>
+    <Content
+      tab="Session"
+    />
+  </styled.div>
+</styled.div>
+`;
