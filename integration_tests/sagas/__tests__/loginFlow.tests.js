@@ -1,6 +1,6 @@
 // @flow
-import setupStore from '../setupStore'
-import { loginFunction, logoutFunction } from '../setupSagas'
+import setupStore from '../../setupStore'
+import { loginFunction, logoutFunction } from '../../setupSagas'
 import { performUserLogin } from 'actions'
 import { PERFORM_USER_LOGOUT } from 'actions/types'
 
