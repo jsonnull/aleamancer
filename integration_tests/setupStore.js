@@ -3,6 +3,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { routerReducer, routerMiddleware } from 'react-router-redux'
 import { createMemoryHistory } from 'history'
 import createSagaMiddleware from 'redux-saga'
+import sinon from 'sinon'
 import messages from 'reducers/messages'
 import session from 'reducers/session'
 import sidebar from 'reducers/sidebar'
@@ -34,8 +35,18 @@ type State = {
   router: RouterState
 }
 
+export const history = createMemoryHistory()
+
+export const dispatchSpy = sinon.spy()
+
+const spyReducer = (state = {}, action) => {
+  dispatchSpy(action)
+  return state
+}
+
 export default function createStoreWithMiddleware() {
   const reducers = combineReducers({
+    spyReducer,
     messages,
     session,
     sidebar,
@@ -45,7 +56,7 @@ export default function createStoreWithMiddleware() {
   })
 
   const sagaMiddleware = createSagaMiddleware()
-  const middleware = [routerMiddleware(createMemoryHistory()), sagaMiddleware]
+  const middleware = [routerMiddleware(history), sagaMiddleware]
 
   let store = createStore(reducers, applyMiddleware(...middleware))
 
