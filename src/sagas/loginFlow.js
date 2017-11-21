@@ -13,7 +13,9 @@ export default function* login(
   logoutFunction: Function
 ): Generator<*, *, *> {
   yield take(APP_FINISHED_LOADING)
-  let userIsLoggedIn = yield select(state => state.ui.userIsLoggedIn)
+  let userIsLoggedIn: boolean = ((yield select(
+    state => state.ui.userIsLoggedIn
+  ): any): boolean)
 
   while (true) {
     const action = yield take([
