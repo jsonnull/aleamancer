@@ -81,7 +81,7 @@ export default (props: Props) => {
             value={props.password}
             onChange={props.onPasswordChange}
           />
-          <Button onClick={() => {}}>Login</Button>
+          <Button onClick={props.onLogin}>Login</Button>
         </form>
       </Login>
     </Container>
