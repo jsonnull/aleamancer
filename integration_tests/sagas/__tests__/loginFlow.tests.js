@@ -2,12 +2,13 @@
 import setupStore from '../../setupStore'
 import { loginFunction, logoutFunction } from '../../setupSagas'
 import { performUserLogin } from 'actions'
-import { PERFORM_USER_LOGOUT } from 'actions/types'
+import { APP_FINISHED_LOADING, PERFORM_USER_LOGOUT } from 'actions/types'
 
 describe('login saga integration', () => {
   const store = setupStore()
 
   const loginAction = performUserLogin('test@email.com', 'password')
+  store.dispatch({ type: APP_FINISHED_LOADING })
   store.dispatch(loginAction)
 
   it('should respond to PERFORM_USER_LOGIN instruction', () => {
