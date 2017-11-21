@@ -20,14 +20,10 @@ function sessionListToArray(sessions: SessionList): Array<SessionInfo> {
 type StateProps = {
   sessions: Array<SessionInfo>
 }
-const mapStateToProps = (state: State, ownProps): StateProps => {
-  return Object.assign(
-    {
-      sessions: sessionListToArray(state.user.data.userSessions)
-    },
-    ownProps
-  )
-}
+const mapStateToProps = (state: State, ownProps): StateProps => ({
+  sessions: sessionListToArray(state.user.data.userSessions),
+  ...ownProps
+})
 
 type DispatchProps = {
   switchToSession: string => void

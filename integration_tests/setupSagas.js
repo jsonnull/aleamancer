@@ -22,10 +22,10 @@ export default function* rootSaga(): Generator<*, *, *> {
   // yield fork(loadSessions)
   // yield fork(loadUserPreferences)
   // yield fork(loadUserProfile)
-  yield fork(loginFlow, loginFunction, logoutFunction)
-  // yield fork(receiveMessages)
-  // yield fork(saveUserPreferences)
-  // yield fork(saveUserProfile)
-  // yield fork(sendMessages)
-  // yield fork(switchSessions)
+  yield fork(loginFlow, loginFunction, logoutFunction),
+    // yield fork(receiveMessages)
+    // yield fork(saveUserPreferences)
+    // yield fork(saveUserProfile)
+    // yield fork(sendMessages)
+    yield fork(switchSessions)
 }
