@@ -2,7 +2,7 @@
 
 exports[`Sessions List component renders correctly with no sessions 1`] = `
 <div
-  className="sc-bxivhb cGaIzD"
+  className="sc-bxivhb edVTVS"
 >
   Yikes, looks like you're not a member of any games. Want to start one?
 </div>
