@@ -6,7 +6,7 @@ import { push } from 'react-router-redux'
 import { changeSidebarTab } from 'actions'
 import { SWITCH_TO_SESSION } from 'actions/types'
 import switchSessions, { switchToSession } from '../switchSessions'
-import type { SessionList } from 'types'
+import type { SessionInfo } from 'types'
 
 describe('switchToSession generator', () => {
   const mockId = 'testId'
@@ -31,16 +31,16 @@ describe('switchToSession generator', () => {
     expect(switchGen.next().value).toHaveProperty('SELECT')
   })
 
-  const sessionList: SessionList = {
-    userSessionId: {
-      sessionId: mockId,
+  const sessions: Array<SessionInfo> = [
+    {
+      id: mockId,
       meta: {
         name: 'session name'
       }
     }
-  }
+  ]
   it('should redirect the user to the session', () => {
-    expect(switchGen.next(sessionList).value).toEqual(
+    expect(switchGen.next(sessions).value).toEqual(
       put(push(`/g/${mockId}/${slug('session name')}`))
     )
   })

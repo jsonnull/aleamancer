@@ -4,13 +4,11 @@ import type { Action } from 'actions/types'
 import type { SessionInfo } from 'types'
 
 export type UserDataState = {
-  userSessions: {
-    [key: string]: SessionInfo
-  }
+  sessions: Array<SessionInfo>
 }
 
 const initialState = {
-  userSessions: {}
+  sessions: []
 }
 
 export default function reducer(
@@ -21,16 +19,15 @@ export default function reducer(
     case types.HYDRATE_USER_DATA:
       return { ...state, ...action.user }
     case types.HYDRATE_SESSION_META:
-      const { meta, userSessionId } = action
+      const { meta, sessionId } = action
       return {
         ...state,
-        userSessions: {
-          ...state.userSessions,
-          [userSessionId]: {
-            ...state.userSessions[userSessionId],
-            meta: { ...meta }
+        sessions: state.sessions.map(session => {
+          if (session.id === sessionId) {
+            return { ...session, meta }
           }
-        }
+          return session
+        })
       }
     default:
       return state

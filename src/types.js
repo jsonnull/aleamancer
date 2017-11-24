@@ -25,12 +25,8 @@ export type SessionMeta = {
 }
 
 export type SessionInfo = {
-  sessionId: string,
+  id: string,
   meta?: SessionMeta
-}
-
-export type SessionList = {
-  [key: string]: SessionInfo
 }
 
 export type ThemeName = 'light' | 'dark'

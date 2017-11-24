@@ -73,6 +73,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin()
   ],
+  devtool: 'eval-source-map',
   devServer: {
     hot: true,
     contentBase: resolve(__dirname, 'public'),

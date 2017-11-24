@@ -5,7 +5,7 @@ import ListItem from '../ListItem.js'
 
 describe('Sessions ListItem component', () => {
   const session = {
-    sessionId: 'id',
+    id: 'id',
     meta: {
       name: 'testName'
     }

@@ -65,11 +65,11 @@ export const hydrateUserData = (user: UserDataState): Action => ({
 })
 
 export const hydrateSessionMeta = (
-  userSessionId: string,
+  sessionId: string,
   meta: SessionMeta
 ): Action => ({
   type: 'HYDRATE_SESSION_META',
-  userSessionId,
+  sessionId,
   meta
 })
 

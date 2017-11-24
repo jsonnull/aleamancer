@@ -35,7 +35,7 @@ const FullList = (props: Props) => {
     <List>
       {sessions.map(session => (
         <Item
-          key={session.sessionId}
+          key={session.id}
           isCurrent={false}
           session={session}
           setSession={props.setSession}

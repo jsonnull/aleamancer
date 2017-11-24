@@ -7,22 +7,19 @@ type GetSessionMeta = (sessionId: string) => Promise<Object>
 
 export function* loadSessionMeta(
   getSessionMeta: GetSessionMeta,
-  userSessionId: string,
   sessionId: string
 ): Generator<*, *, *> {
   const meta = yield call(getSessionMeta, sessionId)
-  yield put(hydrateSessionMeta(userSessionId, meta))
+  yield put(hydrateSessionMeta(sessionId, meta))
 }
 
 export function* loadAllMeta(
   getSessionMeta: GetSessionMeta
 ): Generator<*, *, *> {
-  const sessions = yield select(state => state.user.data.userSessions)
+  const sessions = yield select(state => state.user.data.sessions)
 
   yield all(
-    Object.keys(sessions).map(key =>
-      call(loadSessionMeta, getSessionMeta, key, sessions[key].sessionId)
-    )
+    sessions.map(session => call(loadSessionMeta, getSessionMeta, session.id))
   )
 }
 

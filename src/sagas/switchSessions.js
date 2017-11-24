@@ -6,14 +6,6 @@ import { push } from 'react-router-redux'
 import { changeSidebarTab } from 'actions'
 import { SWITCH_TO_SESSION } from 'actions/types'
 import type { Action } from 'actions/types'
-import type { SessionList, SessionInfo } from 'types'
-
-// FIXME: remove duplicate entry elsewhere
-function sessionListToArray(sessions: SessionList): Array<SessionInfo> {
-  let arr: any = Object.values(sessions)
-  arr = (arr: Array<SessionInfo>)
-  return arr
-}
 
 export function* switchToSession(action: Action): Generator<*, *, *> {
   if (action.type !== SWITCH_TO_SESSION) {
@@ -25,11 +17,10 @@ export function* switchToSession(action: Action): Generator<*, *, *> {
 
   if (sessionId !== currentSessionId) {
     // Get session name
-    const userSessions = yield select(state => state.user.data.userSessions)
-    const sessions = sessionListToArray(userSessions)
+    const sessions = yield select(state => state.user.data.sessions)
 
     // FIXME: Is there some way to remove these if statements?
-    const session = sessions.find(el => el.sessionId === sessionId)
+    const session = sessions.find(el => el.id === sessionId)
     if (session) {
       const meta = session.meta
       if (meta) {

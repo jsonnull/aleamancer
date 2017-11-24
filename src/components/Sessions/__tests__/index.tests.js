@@ -6,7 +6,7 @@ import Sessions from '../index.js'
 describe('Sessions component', () => {
   const sessions = [
     {
-      sessionId: 'id',
+      id: 'id',
       meta: {
         name: 'testName'
       }

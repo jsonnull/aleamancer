@@ -52,7 +52,7 @@ export type Action =
   | { type: 'TOGGLE_CHAT_PIN' }
   // User Data
   | { type: 'HYDRATE_USER_DATA', user: UserDataState }
-  | { type: 'HYDRATE_SESSION_META', userSessionId: string, meta: SessionMeta }
+  | { type: 'HYDRATE_SESSION_META', sessionId: string, meta: SessionMeta }
   // User Session
   | { type: 'HYDRATE_SESSION', session: SessionState }
   | { type: 'SWITCH_TO_SESSION', sessionId: string }

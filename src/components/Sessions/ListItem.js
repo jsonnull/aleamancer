@@ -67,7 +67,7 @@ const Item = (props: Props) => {
   return (
     <Session
       onClick={() => {
-        props.setSession(props.session.sessionId)
+        props.setSession(props.session.id)
       }}
     >
       {content}

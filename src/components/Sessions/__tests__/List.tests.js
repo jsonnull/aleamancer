@@ -13,7 +13,7 @@ describe('Sessions List component', () => {
 
   const sessions = [
     {
-      sessionId: 'id',
+      id: 'id',
       meta: {
         name: 'testName'
       }

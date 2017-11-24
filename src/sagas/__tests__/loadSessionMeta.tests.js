@@ -8,7 +8,7 @@ const mockData = { name: 'test' }
 const mockGetSessionMeta = () => new Promise(resolve => resolve(mockData))
 
 describe('loadSessionMeta generator', () => {
-  const gen = loadSessionMeta(mockGetSessionMeta, 'userSessionId', 'sessionId')
+  const gen = loadSessionMeta(mockGetSessionMeta, 'sessionId')
 
   it('should call getSessionMeta', () => {
     expect(gen.next().value).toEqual(call(mockGetSessionMeta, 'sessionId'))
@@ -16,7 +16,7 @@ describe('loadSessionMeta generator', () => {
 
   it('should hydrate the store with the meta', () => {
     expect(gen.next(mockData).value).toEqual(
-      put(hydrateSessionMeta('userSessionId', mockData))
+      put(hydrateSessionMeta('sessionId', mockData))
     )
   })
 
@@ -28,19 +28,16 @@ describe('loadSessionMeta generator', () => {
 describe('loadAllMeta generator', () => {
   const gen = loadAllMeta(mockGetSessionMeta)
 
-  const sessionIds = {
-    session1: { sessionId: '1' },
-    session2: { sessionId: '2' }
-  }
+  const sessions = [{ id: 'session1' }, { id: 'session2' }]
 
   it('should get an object of session ids from the user', () => {
     expect(gen.next().value).toHaveProperty('SELECT')
   })
 
   it('should yield an `all` effect to get session meta', () => {
-    expect(gen.next(sessionIds).value).toHaveProperty('ALL', [
-      call(loadSessionMeta, mockGetSessionMeta, 'session1', '1'),
-      call(loadSessionMeta, mockGetSessionMeta, 'session2', '2')
+    expect(gen.next(sessions).value).toHaveProperty('ALL', [
+      call(loadSessionMeta, mockGetSessionMeta, 'session1'),
+      call(loadSessionMeta, mockGetSessionMeta, 'session2')
     ])
   })
 

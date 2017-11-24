@@ -6,10 +6,7 @@ import { USER_LOGGED_IN } from 'actions/types'
 import type { UserDataState } from 'reducers/user/data'
 
 const mockUserData: UserDataState = {
-  userSessions: {
-    userSession1: { sessionId: 'globalSession1' },
-    userSession2: { sessionId: 'globalSession2' }
-  }
+  sessions: [{ id: 'globalSession1' }, { id: 'globalSession2' }]
 }
 const mockGetUserData = () => new Promise(resolve => resolve(mockUserData))
 

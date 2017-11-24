@@ -12,14 +12,18 @@
     ],
     "headers": [
       {
-        "source" : "index.html",
-        "headers" : [
+        "source": "index.html",
+        "headers": [
           {
-            "key" : "Cache-Control",
-            "value" : "max-age=300"
+            "key": "Cache-Control",
+            "value": "max-age=300"
           }
         ]
       }
     ]
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
   }
 }

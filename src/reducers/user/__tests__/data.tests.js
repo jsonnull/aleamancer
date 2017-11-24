@@ -6,7 +6,7 @@ import type { SessionMeta } from 'types'
 const INIT_ACTION = { type: '@@INIT' }
 
 const DEFAULT_STATE = {
-  userSessions: {}
+  sessions: []
 }
 
 describe('user data reducer', () => {
@@ -16,17 +16,14 @@ describe('user data reducer', () => {
 
   it('should handle HYDRATE_USER_DATA', () => {
     const userData = {
-      userSessions: {
-        session1: { sessionId: 'session1' },
-        session2: { sessionId: 'session2' }
-      }
+      sessions: [{ id: 'session1' }, { id: 'session2' }]
     }
 
     expect(reduce(undefined, hydrateUserData(userData))).toEqual(userData)
   })
 
   it('should handle HYDRATE_SESSION_META', () => {
-    const state = { userSessions: { session1: { sessionId: 'session1' } } }
+    const state = { sessions: [{ id: 'session1' }] }
     const sessionMeta: SessionMeta = { name: 'test' }
 
     const finalState = reduce(
@@ -35,7 +32,7 @@ describe('user data reducer', () => {
     )
 
     expect(finalState).toEqual({
-      userSessions: { session1: { sessionId: 'session1', meta: sessionMeta } }
+      sessions: [{ id: 'session1', meta: sessionMeta }]
     })
   })
 })
