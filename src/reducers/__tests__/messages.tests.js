@@ -12,7 +12,7 @@ describe('messages reducer', () => {
   })
 
   const message = {
-    key: 'unique',
+    id: 'unique',
     from: 'test1',
     text: 'messageText',
     timestamp: 0,

@@ -14,10 +14,10 @@ export function* sendMessageWithResult(
   }
 
   const { text } = action
-  const name = yield select(state => state.user.profile.displayName)
+  const from = yield select(state => state.user.profile.displayName)
   const result = commandParser.getMessageResult(text)
 
-  const messageOptions = { text, name, result }
+  const messageOptions = { text, from, result }
 
   yield call(sendMessage, messageOptions)
 }

@@ -6,7 +6,7 @@ import Message from '../Message.js'
 describe('Chat Message component', () => {
   it('renders correctly', () => {
     const message = {
-      key: 'key',
+      id: 'key',
       from: 'testUser',
       text: 'text',
       result: null,

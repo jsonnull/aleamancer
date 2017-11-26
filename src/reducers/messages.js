@@ -15,7 +15,7 @@ export default function reducer(
     case types.RECEIVE_MESSAGE:
       const message = action.message
       const isMessageInState =
-        state.findIndex(el => el.key === message.key) !== -1
+        state.findIndex(el => el.id === message.id) !== -1
       if (!isMessageInState) {
         return state.concat(message)
       }

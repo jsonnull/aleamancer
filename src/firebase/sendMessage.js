@@ -1,27 +1,28 @@
 // @flow
 import firebase from '@firebase/app'
-import '@firebase/database'
+import '@firebase/firestore'
 import '@firebase/auth'
 import type { FirebaseMessage } from 'firebase/types'
 import type { MessageResult } from 'types'
 
 type SendMessageOpts = {
-  name: string,
+  from: string,
   text: string,
   result: ?MessageResult
 }
 
 const sendMessage = (opts: SendMessageOpts): Promise<void> => {
-  const ref = firebase.database().ref('messages')
-
-  const message: FirebaseMessage = {
-    ...opts,
-    timestamp: firebase.database.ServerValue.TIMESTAMP
-  }
-
   return new Promise((resolve, reject) => {
-    ref
-      .push(message)
+    const db = firebase.firestore()
+    const messagesCollection = db.collection('messages')
+
+    const message: FirebaseMessage = {
+      ...opts,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }
+
+    messagesCollection
+      .add(message)
       .then(resolve)
       .catch(reject)
   })

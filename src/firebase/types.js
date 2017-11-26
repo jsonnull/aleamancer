@@ -22,7 +22,7 @@ export interface MessagesSubscription {
 
 /* Messages sent/received by Firebase */
 export type FirebaseMessage = {
-  name: string,
+  from: string,
   result: ?MessageResult,
   text: string,
   timestamp: number

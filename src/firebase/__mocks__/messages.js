@@ -2,7 +2,7 @@
 import type { MessagesSubscription } from '../types'
 
 export const mockMessage = {
-  key: 'test',
+  id: 'test',
   from: 'testFrom',
   text: 'test message text',
   result: null,

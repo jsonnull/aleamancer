@@ -1,45 +1,45 @@
 // @flow
 import firebase from '@firebase/app'
-import '@firebase/database'
-import type { MessagesSubscription, Ref, FirebaseMessage } from './types'
-import type { Message } from 'types'
-
-export function messageFromFirebaseData(
-  data: FirebaseMessage,
-  key: string
-): Message {
-  const { name, text, result, timestamp } = data
-
-  const message: Message = {
-    key,
-    from: name,
-    text,
-    result,
-    timestamp
-  }
-
-  return message
-}
+import '@firebase/firestore'
+import type { MessagesSubscription } from './types'
 
 class Messages implements MessagesSubscription {
-  ref: Ref
+  query: Object
+  unsubscribe: ?Function
 
   constructor() {
-    this.ref = firebase.database().ref('messages')
+    this.query = firebase
+      .firestore()
+      .collection('messages')
+      .orderBy('timestamp')
+      .limit(20)
   }
 
   onMessageData(callback: Function) {
-    this.ref
-      .orderByChild('timestamp')
-      .limitToLast(20)
-      .on('child_added', data => {
-        const message = messageFromFirebaseData(data.val(), data.key)
-        callback(message)
-      })
+    this.query.onSnapshot(
+      snapshot => {
+        snapshot.docChanges.forEach(change => {
+          if (change.type === 'added') {
+            const message = {
+              id: change.doc.id,
+              ...change.doc.data()
+            }
+            callback(message)
+          } else if (change.type === 'modified') {
+          } else if (change.type === 'removed') {
+          }
+        })
+      },
+      error => {
+        console.log(error)
+      }
+    )
   }
 
   close() {
-    this.ref.off()
+    if (this.unsubscribe) {
+      this.unsubscribe()
+    }
   }
 }
 

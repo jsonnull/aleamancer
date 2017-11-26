@@ -13,7 +13,7 @@ export type MessageResult = Array<Roll>
 
 /* Message type */
 export type Message = {
-  key: string,
+  id: string,
   from: string,
   text: string,
   result: ?MessageResult,

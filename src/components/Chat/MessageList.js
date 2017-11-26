@@ -57,7 +57,7 @@ export default class MessageList extends React.Component<Props> {
         >
           {this.props.messages.map(message => (
             <MessageView
-              key={message.key}
+              key={message.id}
               message={message}
               isPinned={isPinned}
             />

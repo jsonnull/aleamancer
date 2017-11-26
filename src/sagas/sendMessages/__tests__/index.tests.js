@@ -19,7 +19,7 @@ describe('sendMessageWithResult generator', () => {
   it('should call the sendMessage function', () => {
     const expectedMessage = {
       text: mockAction.text,
-      name: mockName,
+      from: mockName,
       result: null
     }
     expect(gen.next(mockName).value).toEqual(

@@ -2,7 +2,7 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import { ConnectedRouter, push } from 'react-router-redux'
+import { ConnectedRouter } from 'react-router-redux'
 import { sendMessage, receiveMessage } from '../../../src/actions'
 import setupStore, { history, dispatchSpy } from '../../setupStore'
 import Chat from '../../../src/containers/Chat'
@@ -10,7 +10,7 @@ import Chat from '../../../src/containers/Chat'
 describe('Chat container', () => {
   const store = setupStore()
   const message = {
-    key: 'unique',
+    id: 'unique',
     from: 'test1',
     text: 'messageText',
     timestamp: 0,
