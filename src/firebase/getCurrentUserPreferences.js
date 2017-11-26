@@ -1,16 +1,25 @@
 // @flow
 import firebase from '@firebase/app'
 import '@firebase/auth'
-import '@firebase/database'
+import '@firebase/firestore'
 import type { UserPreferencesState } from 'reducers/user/preferences'
 
 const getUserPreferences = (): Promise<UserPreferencesState> => {
-  const uid = firebase.auth().currentUser.uid
-  const ref = firebase.database().ref(`prefs/${uid}`)
   return new Promise((resolve, reject) => {
-    ref
-      .once('value')
-      .then(data => resolve(data.val()))
+    const uid = firebase.auth().currentUser.uid
+    const db = firebase.firestore()
+    const preferencesCollection = db.collection('preferences')
+
+    preferencesCollection
+      .doc(uid)
+      .get()
+      .then(doc => {
+        if (doc.exists) {
+          resolve(doc.data())
+        } else {
+          throw new Error('could not get user preferences')
+        }
+      })
       .catch(reject)
   })
 }
