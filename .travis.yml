@@ -6,7 +6,9 @@ before_install:
 - curl -o- -L https://yarnpkg.com/install.sh | bash
 - export PATH="$HOME/.yarn/bin:$PATH"
 - yarn global add greenkeeper-lockfile@1
-before_script: greenkeeper-lockfile-update
+before_script:
+- greenkeeper-lockfile-update
+- rm node_modules/protobufjs/src/bower.json
 script:
 - npm run flow
 - npm run test:coverage
