@@ -8,9 +8,9 @@
   dependencies:
     "@firebase/util" "^0.1.1"
 
-"@firebase/auth@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@firebase/auth/-/auth-0.2.0.tgz#1d1c264285fba74013bb10a49baa2bb0598dad73"
+"@firebase/auth@0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@firebase/auth/-/auth-0.3.0.tgz#971c22d894205454e14850848012235c44459086"
 
 "@firebase/database@^0.1.2":
   version "0.1.2"
