@@ -29,6 +29,7 @@ export default function createStoreWithMiddleware() {
   const sagaMiddleware = createSagaMiddleware()
   const middleware = [routerMiddleware(history), sagaMiddleware]
 
+  // $FlowFixMe: This is erroring for some reason
   let store = createStore(reducer, applyMiddleware(...middleware))
 
   sagaMiddleware.run(sagas)
