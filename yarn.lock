@@ -27,20 +27,25 @@
     "@firebase/util" "^0.1.1"
     faye-websocket "0.9.3"
 
-"@firebase/firestore@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@firebase/firestore/-/firestore-0.2.0.tgz#d3debc9032971852266e43b08f337c9c8765bd41"
+"@firebase/firestore-types@0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@firebase/firestore-types/-/firestore-types-0.2.1.tgz#f2f35856b283a521c64ac4fa45d140010037e046"
+
+"@firebase/firestore@0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@firebase/firestore/-/firestore-0.3.1.tgz#2fa3e78a6375335af4f4a2da55793ccc919c9296"
   dependencies:
-    "@firebase/webchannel-wrapper" "^0.2.4"
+    "@firebase/firestore-types" "0.2.1"
+    "@firebase/webchannel-wrapper" "0.2.6"
     grpc "^1.7.1"
 
 "@firebase/util@^0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@firebase/util/-/util-0.1.1.tgz#4faa625ffd6e7c518088758cba08790973f7abf9"
 
-"@firebase/webchannel-wrapper@^0.2.4":
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.2.4.tgz#ec8438b780baff09254076efe345f30fdb41243e"
+"@firebase/webchannel-wrapper@0.2.6":
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.2.6.tgz#a4b81ca8cdeb1acbc7923289a4a514f61b59db86"
 
 "@types/jquery@^2.0.40":
   version "2.0.48"

@@ -12,7 +12,7 @@
     "@firebase/app": "^0.1.1",
     "@firebase/auth": "^0.3.0",
     "@firebase/database": "^0.1.2",
-    "@firebase/firestore": "^0.2.0",
+    "@firebase/firestore": "^0.3.1",
     "chromatism": "^3.0.0",
     "font-awesome": "^4.7.0",
     "history": "^4.6.1",
