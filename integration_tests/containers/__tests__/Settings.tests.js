@@ -11,7 +11,7 @@ import {
   USER_LOGGED_IN
 } from '../../../src/actions/types'
 import setupStore, { history } from '../../setupStore'
-import { logoutFunction } from '../../setupSagas'
+import logoutFunction from 'firebase/logout'
 import Settings from '../../../src/containers/Settings'
 
 describe('Settings container', () => {
@@ -55,6 +55,7 @@ describe('Settings container', () => {
     expect(logoutButton.text()).toContain('Logout')
     logoutButton.simulate('click')
     expect(store.getState().ui.userIsLoggedIn).toBe(false)
+    // $FlowJestError
     expect(logoutFunction.called).toBe(true)
   })
 })

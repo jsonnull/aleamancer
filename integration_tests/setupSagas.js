@@ -1,5 +1,4 @@
 // @flow
-import sinon from 'sinon'
 import { fork } from 'redux-saga/effects'
 //import loadCurrentSession from '../src/sagas/loadCurrentSession'
 //import loadSessionMeta from '../src/sagas/loadSessionMeta'
@@ -13,8 +12,9 @@ import loginFlow from '../src/sagas/loginFlow'
 //import sendMessages from '../src/sagas/sendMessages'
 import switchSessions from '../src/sagas/switchSessions'
 
-export const loginFunction = sinon.spy()
-export const logoutFunction = sinon.spy()
+// Mock implementations
+jest.mock('firebase/login')
+jest.mock('firebase/logout')
 
 export default function* rootSaga(): Generator<*, *, *> {
   // yield fork(loadCurrentSession)
@@ -22,10 +22,10 @@ export default function* rootSaga(): Generator<*, *, *> {
   // yield fork(loadSessions)
   // yield fork(loadUserPreferences)
   // yield fork(loadUserProfile)
-  yield fork(loginFlow, loginFunction, logoutFunction),
-    // yield fork(receiveMessages)
-    // yield fork(saveUserPreferences)
-    // yield fork(saveUserProfile)
-    // yield fork(sendMessages)
-    yield fork(switchSessions)
+  yield fork(loginFlow)
+  // yield fork(receiveMessages)
+  // yield fork(saveUserPreferences)
+  // yield fork(saveUserProfile)
+  // yield fork(sendMessages)
+  yield fork(switchSessions)
 }

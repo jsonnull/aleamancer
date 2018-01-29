@@ -3,6 +3,8 @@
 .*/node_modules/protobufjs/.*
 
 [options]
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe
+suppress_comment=\\(.\\|\n\\)*\\$FlowJestError
 module.name_mapper='^actions\(.*\)$' -> '<PROJECT_ROOT>/src/actions\1'
 module.name_mapper='^components/\(.*\)$' -> '<PROJECT_ROOT>/src/components/\1'
 module.name_mapper='^containers/\(.*\)$' -> '<PROJECT_ROOT>/src/containers/\1'

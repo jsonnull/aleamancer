@@ -6,7 +6,7 @@ import { ConnectedRouter } from 'react-router-redux'
 import { performUserLogin } from '../../../src/actions'
 import { APP_FINISHED_LOADING } from '../../../src/actions/types'
 import setupStore, { history } from '../../setupStore'
-import { loginFunction } from '../../setupSagas'
+import loginFunction from 'firebase/login'
 import Login from '../../../src/containers/Login'
 
 describe('Login container', () => {
@@ -31,6 +31,7 @@ describe('Login container', () => {
       .find('input[type="password"]')
       .simulate('change', { target: { value: password } })
     wrapper.find('button').simulate('click')
+    // $FlowJestError
     expect(loginFunction.calledWith(loginAction)).toBe(true)
   })
 })

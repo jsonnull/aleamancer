@@ -1,5 +1,8 @@
 // @flow
+import type { Saga } from 'redux-saga'
 import { take, call, put, select } from 'redux-saga/effects'
+import performLogin from 'firebase/login'
+import performLogout from 'firebase/logout'
 import {
   APP_FINISHED_LOADING,
   PERFORM_USER_LOGIN,
@@ -8,14 +11,12 @@ import {
   USER_LOGGED_OUT
 } from 'actions/types'
 
-export default function* login(
-  loginFunction: Function,
-  logoutFunction: Function
-): Generator<*, *, *> {
+export default function* login(): Saga<void> {
+  // Wait for app to complete loading
   yield take(APP_FINISHED_LOADING)
-  let userIsLoggedIn: boolean = ((yield select(
-    state => state.ui.userIsLoggedIn
-  ): any): boolean)
+
+  // See if user is logged in
+  let userIsLoggedIn = yield select(state => state.ui.userIsLoggedIn)
 
   while (true) {
     const action = yield take([
@@ -23,14 +24,13 @@ export default function* login(
       PERFORM_USER_LOGIN,
       PERFORM_USER_LOGOUT
     ])
-    if (action.type == PERFORM_USER_LOGIN) {
-      if (!userIsLoggedIn) {
-        yield call(loginFunction, action)
-      }
+
+    if (action.type == PERFORM_USER_LOGIN && !userIsLoggedIn) {
+      yield call(performLogin, action)
     } else if (action.type == USER_LOGGED_IN) {
       userIsLoggedIn = true
     } else if (action.type == PERFORM_USER_LOGOUT) {
-      yield call(logoutFunction)
+      yield call(performLogout)
       yield put({ type: USER_LOGGED_OUT })
       userIsLoggedIn = false
     }
