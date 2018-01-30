@@ -3,7 +3,7 @@ import firebase from '@firebase/app'
 import '@firebase/database'
 import type { SessionSubscription, Ref } from './types'
 
-class Session implements SessionSubscription {
+export default class Session implements SessionSubscription {
   ref: Ref
 
   constructor(sessionId: string) {
@@ -20,7 +20,3 @@ class Session implements SessionSubscription {
     this.ref.off()
   }
 }
-
-const createSession = (sessionId: string) => new Session(sessionId)
-
-export default createSession

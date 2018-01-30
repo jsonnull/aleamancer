@@ -2,7 +2,6 @@
 import { take, put } from 'redux-saga/effects'
 import { createMockTask, cloneableGenerator } from 'redux-saga/utils'
 import { switchToSession, hydrateSession } from 'actions'
-import createSession from '../../firebase/__mocks__/session'
 import {
   USER_LOGGED_IN,
   USER_LOGGED_OUT,
@@ -10,9 +9,10 @@ import {
 } from 'actions/types'
 import loadCurrentSession, { subscribeToSession } from '../loadCurrentSession'
 
+jest.mock('firebase/session')
+
 describe('loadCurrentSession saga', () => {
-  const createSession = () => {}
-  const start = cloneableGenerator(loadCurrentSession)(createSession)
+  const start = cloneableGenerator(loadCurrentSession)()
 
   const firstAction = start.clone()
   it('should wait for login, logout, or switch session instructions', () => {
@@ -52,7 +52,7 @@ describe('loadCurrentSession saga', () => {
 })
 
 describe('subscribeToSession generator', () => {
-  const subscription = subscribeToSession(createSession('fakeSessionId'))
+  const subscription = subscribeToSession('fakeSessionId')
 
   it('should wait for event from the channel', () => {
     expect(subscription.next().value).toHaveProperty('TAKE')

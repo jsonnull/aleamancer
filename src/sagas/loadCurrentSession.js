@@ -9,11 +9,14 @@ import {
   SWITCH_TO_SESSION
 } from 'actions/types'
 import type { Action } from 'actions/types'
-import type { SessionSubscription } from 'firebase/types'
+import type { Saga } from 'redux-saga'
+import Session from 'firebase/session'
 
-export function* subscribeToSession(
-  session: SessionSubscription
-): Generator<Object, *, *> {
+export function* subscribeToSession(sessionId: string): Saga<void> {
+  // Create the session
+  const session = new Session(sessionId)
+
+  // Subscribe to changes in the channel
   const channel = eventChannel(emit => {
     // Emit on new data
     session.onSessionData(emit)
@@ -34,11 +37,7 @@ export function* subscribeToSession(
   }
 }
 
-type CreateSessionFunction = (sessionId: string) => SessionSubscription
-
-export default function* loadCurrentSession(
-  createSession: CreateSessionFunction
-): Generator<*, *, *> {
+export default function* loadCurrentSession(): Saga<void> {
   let currentSubscription = null
   let currentSessionId = null
 
@@ -70,11 +69,9 @@ export default function* loadCurrentSession(
         yield cancel(currentSubscription)
       }
 
+      // Update state variables
+      currentSubscription = yield fork(subscribeToSession, newSessionId)
       currentSessionId = newSessionId
-      currentSubscription = yield fork(
-        subscribeToSession,
-        createSession(newSessionId)
-      )
     }
   }
 }
