@@ -4,14 +4,15 @@ import { hydrateSessionMeta } from 'actions'
 import { HYDRATE_USER_DATA } from 'actions/types'
 import loadMeta, { loadAllMeta, loadSessionMeta } from '../loadSessionMeta'
 
+jest.mock('firebase/getSessionMeta')
+
 const mockData = { name: 'test' }
-const mockGetSessionMeta = () => new Promise(resolve => resolve(mockData))
 
 describe('loadSessionMeta generator', () => {
-  const gen = loadSessionMeta(mockGetSessionMeta, 'sessionId')
+  const gen = loadSessionMeta('sessionId')
 
   it('should call getSessionMeta', () => {
-    expect(gen.next().value).toEqual(call(mockGetSessionMeta, 'sessionId'))
+    expect(gen.next().value).toHaveProperty('CALL.fn')
   })
 
   it('should hydrate the store with the meta', () => {
@@ -26,18 +27,20 @@ describe('loadSessionMeta generator', () => {
 })
 
 describe('loadAllMeta generator', () => {
-  const gen = loadAllMeta(mockGetSessionMeta)
+  const gen = loadAllMeta()
 
   const sessions = [{ id: 'session1' }, { id: 'session2' }]
 
+  // Asking for a list of sessions
   it('should get an object of session ids from the user', () => {
     expect(gen.next().value).toHaveProperty('SELECT')
   })
 
+  // Get meta for all sessions
   it('should yield an `all` effect to get session meta', () => {
     expect(gen.next(sessions).value).toHaveProperty('ALL', [
-      call(loadSessionMeta, mockGetSessionMeta, 'session1'),
-      call(loadSessionMeta, mockGetSessionMeta, 'session2')
+      call(loadSessionMeta, 'session1'),
+      call(loadSessionMeta, 'session2')
     ])
   })
 
@@ -47,12 +50,10 @@ describe('loadAllMeta generator', () => {
 })
 
 describe('loadMeta saga', () => {
-  const gen = loadMeta(mockGetSessionMeta)
+  const gen = loadMeta()
 
   it('should wait for HYDRATE_USER_DATA instruction', () => {
-    expect(gen.next().value).toEqual(
-      takeLatest(HYDRATE_USER_DATA, loadAllMeta, mockGetSessionMeta)
-    )
+    expect(gen.next().value).toEqual(takeLatest(HYDRATE_USER_DATA, loadAllMeta))
   })
 
   it('should be done', () => {
