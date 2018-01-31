@@ -15,10 +15,12 @@ import switchSessions from '../src/sagas/switchSessions'
 // Mock implementations
 jest.mock('firebase/session')
 jest.mock('firebase/getSessionMeta')
+jest.mock('firebase/getCurrentUserPreferences')
 jest.mock('firebase/getCurrentUserProfile')
 jest.mock('firebase/getCurrentUserData')
 jest.mock('firebase/messages')
 jest.mock('firebase/getCurrentUserEmail')
+jest.mock('firebase/savePreferences')
 jest.mock('firebase/saveProfile')
 jest.mock('firebase/login')
 jest.mock('firebase/logout')

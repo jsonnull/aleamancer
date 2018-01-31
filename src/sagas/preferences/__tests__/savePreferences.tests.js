@@ -2,10 +2,14 @@
 import { take, call } from 'redux-saga/effects'
 import { CHANGE_THEME, TOGGLE_CHAT_PIN } from 'actions/types'
 import savePreferences from '../savePreferences'
+import mockSaveFunction from 'firebase/savePreferences'
+
+jest.mock('firebase/savePreferences')
+
+const mockData = { theme: 'light', chatPinned: true }
 
 describe('savePreferences saga', () => {
-  const mockSaveFunction = () => {}
-  const gen = savePreferences(mockSaveFunction)
+  const gen = savePreferences()
 
   it('should wait for preferences to change', () => {
     expect(gen.next().value).toEqual(take([CHANGE_THEME, TOGGLE_CHAT_PIN]))
@@ -16,7 +20,7 @@ describe('savePreferences saga', () => {
   })
 
   it('should call the function to save preferences', () => {
-    expect(gen.next().value).toEqual(call(mockSaveFunction, undefined))
+    expect(gen.next(mockData).value).toEqual(call(mockSaveFunction, mockData))
   })
 
   it('should continue listening', () => {
