@@ -3,6 +3,7 @@ import { call, put, takeEvery } from 'redux-saga/effects'
 import loadSessionsWatcher, { loadSessions } from '../loadUserSessions'
 import { hydrateUserData } from 'actions'
 import { USER_LOGGED_IN } from 'actions/types'
+import getCurrentUserData from 'firebase/getCurrentUserData'
 import type { UserDataState } from 'reducers/user/data'
 
 jest.mock('firebase/getCurrentUserData')
@@ -15,7 +16,7 @@ describe('load sessions generator', () => {
   const gen = loadSessions()
 
   it('should call function to get user data', () => {
-    expect(gen.next().value).toHaveProperty('CALL.fn')
+    expect(gen.next().value).toEqual(call(getCurrentUserData))
   })
 
   it('should hydrate the store with user data', () => {

@@ -3,6 +3,7 @@ import { call, put, takeLatest } from 'redux-saga/effects'
 import { hydrateSessionMeta } from 'actions'
 import { HYDRATE_USER_DATA } from 'actions/types'
 import loadMeta, { loadAllMeta, loadSessionMeta } from '../loadSessionMeta'
+import getSessionMeta from 'firebase/getSessionMeta'
 
 jest.mock('firebase/getSessionMeta')
 
@@ -12,7 +13,7 @@ describe('loadSessionMeta generator', () => {
   const gen = loadSessionMeta('sessionId')
 
   it('should call getSessionMeta', () => {
-    expect(gen.next().value).toHaveProperty('CALL.fn')
+    expect(gen.next().value).toEqual(call(getSessionMeta, 'sessionId'))
   })
 
   it('should hydrate the store with the meta', () => {

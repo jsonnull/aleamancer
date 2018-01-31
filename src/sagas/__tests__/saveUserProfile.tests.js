@@ -5,6 +5,8 @@ import { cloneableGenerator } from 'redux-saga/utils'
 import { changeDisplayName } from 'actions'
 import { CHANGE_DISPLAY_NAME } from 'actions/types'
 import saveUserProfile from '../saveUserProfile'
+import getCurrentUserEmail from 'firebase/getCurrentUserEmail'
+import saveProfile from 'firebase/saveProfile'
 
 jest.mock('firebase/getCurrentUserEmail')
 jest.mock('firebase/saveProfile')
@@ -38,7 +40,9 @@ describe('saveUserProfile saga', () => {
   })
 
   it('should get the users email if no name is present', () => {
-    expect(withEmptyName.next(emptyNameProfile).value).toHaveProperty('CALL.fn')
+    expect(withEmptyName.next(emptyNameProfile).value).toEqual(
+      call(getCurrentUserEmail)
+    )
   })
 
   it('should put the users email in place of the name', () => {
@@ -51,6 +55,8 @@ describe('saveUserProfile saga', () => {
     // Take, select
     withUserName.next()
     withUserName.next(filledNameAction)
-    expect(withUserName.next(filledNameProfile).value).toHaveProperty('CALL.fn')
+    expect(withUserName.next(filledNameProfile).value).toEqual(
+      call(saveProfile, filledNameProfile)
+    )
   })
 })

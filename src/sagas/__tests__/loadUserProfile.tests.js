@@ -3,6 +3,7 @@ import { take, call, put } from 'redux-saga/effects'
 import { hydrateUserProfile } from 'actions'
 import { USER_LOGGED_IN } from 'actions/types'
 import loadUserProfile from '../loadUserProfile'
+import getUserProfile from 'firebase/getCurrentUserProfile'
 
 jest.mock('firebase/getCurrentUserProfile')
 
@@ -18,7 +19,7 @@ describe('loadUserProfile saga', () => {
   })
 
   it('should call function to get user profile', () => {
-    expect(gen.next(mockAction).value).toHaveProperty('CALL.fn')
+    expect(gen.next(mockAction).value).toEqual(call(getUserProfile))
   })
 
   it('should hydrate the redux store with profile', () => {
