@@ -1,4 +1,5 @@
 // @flow
+import type { Saga } from 'redux-saga'
 import slug from 'slugg'
 import { put, select, takeEvery } from 'redux-saga/effects'
 import sessionIdSelector from 'selectors/sessionId'
@@ -7,7 +8,7 @@ import { changeSidebarTab } from 'actions'
 import { SWITCH_TO_SESSION } from 'actions/types'
 import type { Action } from 'actions/types'
 
-export function* switchToSession(action: Action): Generator<*, *, *> {
+export function* switchToSession(action: Action): Saga<void> {
   if (action.type !== SWITCH_TO_SESSION) {
     return
   }
@@ -32,6 +33,6 @@ export function* switchToSession(action: Action): Generator<*, *, *> {
   }
 }
 
-export default function* switchSessions(): Generator<*, *, *> {
+export default function* switchSessions(): Saga<void> {
   yield takeEvery(SWITCH_TO_SESSION, switchToSession)
 }
