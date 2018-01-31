@@ -1,13 +1,14 @@
 // @flow
+import type { Saga } from 'redux-saga'
 import { eventChannel } from 'redux-saga'
 import { put, take, fork, cancel, cancelled } from 'redux-saga/effects'
 import { receiveMessage } from 'actions'
 import { USER_LOGGED_IN, USER_LOGGED_OUT } from 'actions/types'
-import type { MessagesSubscription } from 'firebase/types'
+import Messages from 'firebase/messages'
 
-export function* subscribeToMessages(
-  subscription: MessagesSubscription
-): Generator<*, *, *> {
+export function* subscribeToMessages(): Saga<void> {
+  const subscription = new Messages()
+
   const listener = eventChannel(emit => {
     // Subscribe to message data
     subscription.onMessageData(emit)
@@ -27,9 +28,7 @@ export function* subscribeToMessages(
   }
 }
 
-export default function* receiveMessages(
-  createMessagesSubscription: () => MessagesSubscription
-): Generator<*, *, *> {
+export default function* receiveMessages(): Saga<void> {
   let currentSubscription = null
 
   while (true) {
@@ -38,8 +37,7 @@ export default function* receiveMessages(
 
     if (action.type === USER_LOGGED_IN) {
       // If user is logged in, create a subscription to messages
-      const subscription = createMessagesSubscription()
-      currentSubscription = yield fork(subscribeToMessages, subscription)
+      currentSubscription = yield fork(subscribeToMessages)
     } else if (action.type === USER_LOGGED_OUT) {
       // If user is logged out, cancel the subscription
       if (currentSubscription) {

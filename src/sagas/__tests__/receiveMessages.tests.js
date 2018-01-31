@@ -3,14 +3,20 @@ import { put, take } from 'redux-saga/effects'
 import { createMockTask, cloneableGenerator } from 'redux-saga/utils'
 import { receiveMessage } from 'actions'
 import { USER_LOGGED_IN, USER_LOGGED_OUT } from 'actions/types'
-import createMessagesSubscription, {
-  mockMessage
-} from '../../firebase/__mocks__/messages'
 import receiveMessages, { subscribeToMessages } from '../receiveMessages'
 
+jest.mock('firebase/messages')
+
+const mockMessage = {
+  id: 'test',
+  from: 'testFrom',
+  text: 'test message text',
+  result: null,
+  timestamp: 0
+}
+
 describe('subscribeToMessages generator', () => {
-  const mockSubscription = createMessagesSubscription()
-  const gen = subscribeToMessages(mockSubscription)
+  const gen = subscribeToMessages()
 
   it('should wait for a message to be received', () => {
     expect(gen.next().value).toHaveProperty('TAKE')
@@ -28,7 +34,7 @@ describe('subscribeToMessages generator', () => {
 })
 
 describe('receiveMessages saga', () => {
-  const gen = cloneableGenerator(receiveMessages)(createMessagesSubscription)
+  const gen = cloneableGenerator(receiveMessages)()
   const loginAction = { type: USER_LOGGED_IN }
   const logoutAction = { type: USER_LOGGED_OUT }
 

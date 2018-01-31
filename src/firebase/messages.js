@@ -3,7 +3,7 @@ import firebase from '@firebase/app'
 import '@firebase/firestore'
 import type { MessagesSubscription } from './types'
 
-class Messages implements MessagesSubscription {
+export default class Messages implements MessagesSubscription {
   query: Object
   unsubscribe: ?Function
 
@@ -42,7 +42,3 @@ class Messages implements MessagesSubscription {
     }
   }
 }
-
-const createSubscription = () => new Messages()
-
-export default createSubscription
