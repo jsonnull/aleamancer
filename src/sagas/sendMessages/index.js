@@ -4,6 +4,7 @@ import { call, select, takeEvery } from 'redux-saga/effects'
 import CommandParser from './commandParser'
 import { SEND_MESSAGE } from 'actions/types'
 import type { Action } from 'actions/types'
+import currentUser from 'selectors/currentUser'
 import sendMessage from 'firebase/sendMessage'
 
 export function* sendMessageWithResult(
@@ -15,7 +16,8 @@ export function* sendMessageWithResult(
   }
 
   const { text } = action
-  const from = yield select(state => state.user.profile.displayName)
+  const user = yield select(currentUser)
+  const from = user.displayName
   const result = commandParser.getMessageResult(text)
 
   const messageOptions = { text, from, result }
