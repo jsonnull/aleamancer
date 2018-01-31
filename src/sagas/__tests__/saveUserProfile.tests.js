@@ -26,7 +26,8 @@ describe('saveUserProfile saga', () => {
     name: 'test'
   }
   const filledNameProfile = {
-    displayName: 'test'
+    displayName: 'test',
+    photoURL: null
   }
   const withEmptyName = gen.clone()
   const withUserName = gen.clone()

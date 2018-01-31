@@ -1,14 +1,14 @@
 // @flow
 import firebase from '@firebase/app'
 import '@firebase/auth'
+import { PERFORM_USER_LOGIN } from 'actions/types'
+import type { Action } from 'actions/types'
 
-type LoginAction = {
-  type: 'PERFORM_USER_LOGIN',
-  email: string,
-  password: string
-}
+const loginWithEmailAndPassword = (action: Action) => {
+  if (action.type !== PERFORM_USER_LOGIN) {
+    return
+  }
 
-const loginWithEmailAndPassword = (action: LoginAction) => {
   firebase
     .auth()
     .signInWithEmailAndPassword(action.email, action.password)
