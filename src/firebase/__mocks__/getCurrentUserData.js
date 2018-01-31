@@ -6,7 +6,7 @@ const mockUserData: UserDataState = {
 }
 
 export default function getCurrentUserData(): Promise<?UserDataState> {
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     resolve(mockUserData)
   })
 }

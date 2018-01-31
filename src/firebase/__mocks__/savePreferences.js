@@ -1,6 +1,6 @@
 // @flow
 import type { PreferencesState } from 'reducers/preferences'
 
-const savePreferences = (preferences: PreferencesState) => {}
+const savePreferences = (_preferences: PreferencesState) => {}
 
 export default savePreferences

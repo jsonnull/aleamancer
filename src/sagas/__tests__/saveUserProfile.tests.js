@@ -1,5 +1,4 @@
 // @flow
-import type { Saga } from 'redux-saga'
 import { take, put, call } from 'redux-saga/effects'
 import { cloneableGenerator } from 'redux-saga/utils'
 import { changeDisplayName } from 'actions'

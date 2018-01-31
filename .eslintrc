@@ -13,7 +13,11 @@
   ],
   "rules": {
     "eqeqeq": 0,
-    "no-unused-vars": 2,
+    "no-unused-vars": [
+      "error", {
+        "argsIgnorePattern": "^_"
+      }
+    ],
     "import/no-webpack-loader-syntax": 0,
     "react/prop-types": 0,
     "react/display-name": 0,

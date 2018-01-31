@@ -1,8 +1,8 @@
 // @flow
+const mockData = { name: 'test' }
 
-const loadSessionMeta = (sessionId: string): Promise<Object> =>
-  new Promise((resolve, reject) => {
-    const mockData = { name: 'test' }
+const loadSessionMeta = (_sessionId: string): Promise<Object> =>
+  new Promise(resolve => {
     resolve(mockData)
   })
 

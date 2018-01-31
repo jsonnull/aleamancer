@@ -1,3 +1,4 @@
+// @flow
 import sinon from 'sinon'
 
 const login = sinon.spy()

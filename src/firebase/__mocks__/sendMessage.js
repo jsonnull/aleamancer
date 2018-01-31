@@ -7,8 +7,8 @@ type SendMessageOpts = {
   result: ?MessageResult
 }
 
-const sendMessage = (opts: SendMessageOpts): Promise<void> => {
-  return new Promise((resolve, reject) => {
+const sendMessage = (_opts: SendMessageOpts): Promise<void> => {
+  return new Promise(resolve => {
     resolve()
   })
 }
