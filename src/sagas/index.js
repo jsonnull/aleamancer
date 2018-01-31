@@ -1,4 +1,5 @@
 // @flow
+import type { Saga } from 'redux-saga'
 import { fork } from 'redux-saga/effects'
 import loadCurrentSession from './loadCurrentSession'
 import loadSessionMeta from './loadSessionMeta'
@@ -11,12 +12,8 @@ import receiveMessages from './receiveMessages'
 import saveUserProfile from './saveUserProfile'
 import sendMessages from './sendMessages'
 import switchSessions from './switchSessions'
-// Firebase DI
-import getCurrentUserPreferences from 'firebase/getCurrentUserPreferences'
-import saveCurrentUserPreferences from 'firebase/savePreferences'
-import sendMessage from 'firebase/sendMessage'
 
-export default function* rootSaga(): Generator<*, *, *> {
+export default function* rootSaga(): Saga<void> {
   yield fork(loadCurrentSession)
   yield fork(loadSessionMeta)
   yield fork(loadUserProfile)
@@ -24,9 +21,9 @@ export default function* rootSaga(): Generator<*, *, *> {
   yield fork(loginFlow)
   yield fork(receiveMessages)
   yield fork(saveUserProfile)
-  yield fork(sendMessages, sendMessage)
+  yield fork(sendMessages)
   yield fork(switchSessions)
   // Preferences
-  yield fork(loadPreferences, getCurrentUserPreferences)
-  yield fork(savePreferences, saveCurrentUserPreferences)
+  yield fork(loadPreferences)
+  yield fork(savePreferences)
 }

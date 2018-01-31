@@ -22,6 +22,7 @@ jest.mock('firebase/messages')
 jest.mock('firebase/getCurrentUserEmail')
 jest.mock('firebase/savePreferences')
 jest.mock('firebase/saveProfile')
+jest.mock('firebase/sendMessage')
 jest.mock('firebase/login')
 jest.mock('firebase/logout')
 
