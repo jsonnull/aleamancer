@@ -18,6 +18,8 @@ jest.mock('firebase/getSessionMeta')
 jest.mock('firebase/getCurrentUserProfile')
 jest.mock('firebase/getCurrentUserData')
 jest.mock('firebase/messages')
+jest.mock('firebase/getCurrentUserEmail')
+jest.mock('firebase/saveProfile')
 jest.mock('firebase/login')
 jest.mock('firebase/logout')
 
