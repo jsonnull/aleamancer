@@ -4928,9 +4928,9 @@ pn@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
 
-popper.js@^1.12.5:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.13.0.tgz#e1e7ff65cc43f7cf9cf16f1510a75e81f84f4565"
+popper.js@^1.12.9:
+  version "1.12.9"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.12.9.tgz#0dfbc2dff96c451bb332edcfcfaaf566d331d5b3"
 
 portfinder@^1.0.9:
   version "1.0.13"
@@ -5165,12 +5165,13 @@ react-onclickoutside@^6.6.0:
   version "6.6.3"
   resolved "https://registry.yarnpkg.com/react-onclickoutside/-/react-onclickoutside-6.6.3.tgz#f3b9226f4541039d6d5a4a6120c4dfffcf7de60c"
 
-react-popper@^0.7.4:
-  version "0.7.4"
-  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-0.7.4.tgz#8649d539837e7c6f47bc9b24c9cf57a404e199a1"
+react-popper@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-0.8.0.tgz#e8d5a936e2d4ded439a704221f0a893eda8cf284"
   dependencies:
-    popper.js "^1.12.5"
+    popper.js "^1.12.9"
     prop-types "^15.5.10"
+    react-transition-group "^2.2.1"
 
 react-redux@^5.0.6:
   version "5.0.6"
