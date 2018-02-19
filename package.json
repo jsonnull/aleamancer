@@ -20,7 +20,7 @@
     "random-js": "^1.0.8",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-hot-loader": "4.0.0-beta.14",
+    "react-hot-loader": "4.0.0-rc.0",
     "react-onclickoutside": "^6.6.0",
     "react-popper": "^0.7.4",
     "react-redux": "^5.0.6",
