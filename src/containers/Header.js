@@ -6,7 +6,8 @@ import type { State } from '../store'
 import displayNameSelector from '../selectors/displayName'
 
 type StateProps = {
-  username: string | null
+  username: string | null,
+  userIsLoggedIn: boolean
 }
 const mapStateToProps = (state: State): StateProps => ({
   username: displayNameSelector(state),
