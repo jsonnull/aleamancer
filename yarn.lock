@@ -16,9 +16,15 @@
   dependencies:
     "@firebase/util" "^0.1.1"
 
-"@firebase/auth@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@firebase/auth/-/auth-0.3.0.tgz#971c22d894205454e14850848012235c44459086"
+"@firebase/auth-types@0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@firebase/auth-types/-/auth-types-0.2.0.tgz#38f9ce77b7b513eafac7e2e8291f1fe97031895a"
+
+"@firebase/auth@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@firebase/auth/-/auth-0.4.0.tgz#7e767b652247176bd07291bf1cb4155037623fa7"
+  dependencies:
+    "@firebase/auth-types" "0.2.0"
 
 "@firebase/database-types@0.2.0":
   version "0.2.0"
