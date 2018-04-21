@@ -25,9 +25,6 @@ export const UPDATE_USER_PROFILE = 'UPDATE_USER_PROFILE'
 export const HYDRATE_PREFERENCES = 'HYDRATE_PREFERENCES'
 export const CHANGE_THEME = 'CHANGE_THEME'
 export const TOGGLE_CHAT_PIN = 'TOGGLE_CHAT_PIN'
-export const HYDRATE_SESSIONS_LIST = 'HYDRATE_SESSIONS_LIST'
-export const HYDRATE_SESSION_META = 'HYDRATE_SESSION_META'
-export const HYDRATE_SESSION = 'HYDRATE_SESSION'
 export const SWITCH_TO_SESSION = 'SWITCH_TO_SESSION'
 export const CHANGE_SIDEBAR_TAB = 'CHANGE_SIDEBAR_TAB'
 
@@ -54,11 +51,7 @@ export type Action =
   | { type: 'HYDRATE_PREFERENCES', prefs: PreferencesState }
   | { type: 'CHANGE_THEME', theme: ThemeName }
   | { type: 'TOGGLE_CHAT_PIN' }
-  // Sessions
-  | { type: 'HYDRATE_SESSIONS_LIST', sessions: SessionsState }
-  | { type: 'HYDRATE_SESSION_META', sessionId: string, meta: SessionMeta }
   // Current Session
-  // | { type: 'HYDRATE_SESSION', session: SessionState }
   | { type: 'SWITCH_TO_SESSION', sessionId: string }
   // Sidebar
   | { type: 'CHANGE_SIDEBAR_TAB', tab: Tab }

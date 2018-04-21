@@ -7,7 +7,6 @@ import loginFlow from 'frontend/sagas/loginFlow'
 //import saveUserPreferences from '../src/sagas/saveUserPreferences'
 //import saveUserProfile from '../src/sagas/saveUserProfile'
 //import sendMessages from '../src/sagas/sendMessages'
-import switchSessions from 'frontend/sagas/switchSessions'
 
 // Mock implementations
 jest.mock('frontend/firebase/getCurrentUserPreferences')
@@ -27,5 +26,4 @@ export default function* rootSaga(): Generator<*, *, *> {
   // yield fork(saveUserPreferences)
   // yield fork(saveUserProfile)
   // yield fork(sendMessages)
-  yield fork(switchSessions)
 }

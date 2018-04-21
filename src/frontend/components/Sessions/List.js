@@ -51,7 +51,7 @@ const FullList = (props: Props) => {
         <Item
           key={session.id}
           name={session.name}
-          setSession={() => props.setSession(session.id)}
+          setSession={() => props.setSession(session.id, session.name)}
         />
       ))}
     </List>

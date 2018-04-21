@@ -67,29 +67,8 @@ export const changeTheme = (theme: ThemeName): Action => ({
 })
 
 /*
- * User Data
- */
-export const hydrateSessionsList = (sessions: SessionsState): Action => ({
-  type: 'HYDRATE_SESSIONS_LIST',
-  sessions
-})
-
-export const hydrateSessionMeta = (
-  sessionId: string,
-  meta: SessionMeta
-): Action => ({
-  type: 'HYDRATE_SESSION_META',
-  sessionId,
-  meta
-})
-
-/*
  * Session
  */
-// export const hydrateSession = (session: SessionState): Action => ({
-// type: 'HYDRATE_SESSION',
-// session
-// })
 
 export const switchToSession = (sessionId: string): Action => ({
   type: 'SWITCH_TO_SESSION',
