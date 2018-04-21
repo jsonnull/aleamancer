@@ -1,31 +1,40 @@
 // @flow
+import { compose } from 'recompose'
 import { connect } from 'react-redux'
 import { changeSidebarTab } from 'frontend/actions'
 import Sidebar from 'frontend/components/Sidebar'
-import sessionNameSelector from 'frontend/selectors/sessionName'
+import sessionIdSelector from 'frontend/selectors/sessionId'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 import type { State } from 'frontend/store'
 import type { Tab } from 'common/types'
 
-type StateProps = {
-  name: string,
-  open: boolean,
-  tab: Tab
-}
-const mapStateToProps = (state: State): StateProps => {
-  return {
-    name: sessionNameSelector(state),
-    open: state.sidebar.open,
-    tab: state.sidebar.tab
-  }
+const mapStateToProps = (state: State) => ({
+  sessionId: sessionIdSelector(state),
+  open: state.sidebar.open,
+  tab: state.sidebar.tab
+})
+
+const mapDispatchToProps = {
+  changeTab: changeSidebarTab
 }
 
-type DispatchProps = {
-  changeTab: Function
-}
-const mapDispatchToProps = (dispatch: Function): DispatchProps => {
-  return {
-    changeTab: tab => dispatch(changeSidebarTab(tab))
+const currentSession = gql`
+  query sessionName($id: ID!) {
+    game(id: $id) {
+      name
+    }
   }
-}
+`
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  graphql(currentSession, {
+    name: 'currentSession',
+    options: ownProps => ({
+      variables: {
+        id: ownProps.sessionId
+      }
+    })
+  })
+)(Sidebar)

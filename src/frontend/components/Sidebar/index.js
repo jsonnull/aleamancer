@@ -33,7 +33,7 @@ const ContentContainer = styled.div`
 `
 
 type Props = {
-  name: string,
+  currentSession: Object,
   open: boolean,
   tab: Tab,
   changeTab: Function
@@ -41,11 +41,12 @@ type Props = {
 
 class Sidebar extends React.Component<Props> {
   render() {
-    const { name, tab, changeTab } = this.props
+    const { tab, changeTab, currentSession } = this.props
+
     return (
       <Container>
         <Top>
-          <Header>{name}</Header>
+          <Header>{currentSession.game && currentSession.game.name}</Header>
           <Menu tab={tab} changeTab={changeTab} />
         </Top>
         <ContentContainer>
