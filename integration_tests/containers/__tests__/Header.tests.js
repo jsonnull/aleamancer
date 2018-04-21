@@ -1,16 +1,13 @@
 // @flow
 import React from 'react'
-import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import { ConnectedRouter } from 'react-router-redux'
-import setupStore, { history, dispatchSpy } from '../../setupStore'
-import { userLoggedIn, hydrateUserProfile } from '../../../src/actions'
-import { SHOW_SETTINGS } from '../../../src/actions/types'
-import Header from '../../../src/containers/Header'
+import App, { setupStore, dispatchSpy } from '../../appContainer'
+import { userLoggedIn, hydrateUserProfile } from 'frontend/actions'
+import { SHOW_SETTINGS } from 'frontend/actions/types'
+import Header from 'frontend/containers/Header'
 
 describe('Header container', () => {
   const store = setupStore()
-
   // Mimic user login and basic details
   store.dispatch(userLoggedIn('testUserId', 'test@example.com'))
   store.dispatch(
@@ -21,11 +18,9 @@ describe('Header container', () => {
   )
 
   const wrapper = mount(
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <Header />
-      </ConnectedRouter>
-    </Provider>
+    <App store={store}>
+      <Header />
+    </App>
   )
 
   it('should show the users display name', () => {

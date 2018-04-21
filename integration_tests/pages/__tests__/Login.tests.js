@@ -1,23 +1,19 @@
 // @flow
 import React from 'react'
-import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import { ConnectedRouter } from 'react-router-redux'
-import { performUserLogin } from '../../../src/actions'
-import { APP_FINISHED_LOADING } from '../../../src/actions/types'
-import setupStore, { history } from '../../setupStore'
-import loginFunction from '../../../src/firebase/login'
-import Login from '../../../src/pages/Login'
+import App, { setupStore } from '../../appContainer'
+import { performUserLogin } from 'frontend/actions'
+import { APP_FINISHED_LOADING } from 'frontend/actions/types'
+import loginFunction from 'frontend/firebase/login'
+import Login from 'frontend/pages/Login'
 
 describe('Login container', () => {
   const store = setupStore()
   store.dispatch({ type: APP_FINISHED_LOADING })
   const wrapper = mount(
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <Login />
-      </ConnectedRouter>
-    </Provider>
+    <App store={store}>
+      <Login />
+    </App>
   )
 
   it('should perform login action', () => {

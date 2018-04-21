@@ -1,11 +1,9 @@
 // @flow
 import React from 'react'
-import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import { ConnectedRouter } from 'react-router-redux'
-import { USER_LOGGED_IN, SHOW_SETTINGS } from '../../../src/actions/types'
-import setupStore, { history } from '../../setupStore'
-import Pages from '../../../src/pages'
+import App, { setupStore } from '../../appContainer'
+import { USER_LOGGED_IN, SHOW_SETTINGS } from 'frontend/actions/types'
+import Pages from 'frontend/pages'
 
 describe('App container', () => {
   let store, wrapper
@@ -14,11 +12,9 @@ describe('App container', () => {
     store = setupStore()
 
     wrapper = mount(
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <Pages />
-        </ConnectedRouter>
-      </Provider>
+      <App store={store}>
+        <Pages />
+      </App>
     )
   })
 

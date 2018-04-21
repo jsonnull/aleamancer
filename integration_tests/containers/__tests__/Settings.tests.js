@@ -1,18 +1,13 @@
 // @flow
 import React from 'react'
-import { ThemeProvider } from 'styled-components'
-import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import { ConnectedRouter } from 'react-router-redux'
-import { light } from '../../../src/styles/themes'
-import { userLoggedIn, hydrateUserProfile } from '../../../src/actions'
-import {
-  APP_FINISHED_LOADING,
-  USER_LOGGED_IN
-} from '../../../src/actions/types'
-import setupStore, { history } from '../../setupStore'
-import logoutFunction from '../../../src/firebase/logout'
-import Settings from '../../../src/containers/Settings'
+import App, { setupStore } from '../../appContainer'
+import { ThemeProvider } from 'styled-components'
+import { light } from 'frontend/styles/themes'
+import { userLoggedIn, hydrateUserProfile } from 'frontend/actions'
+import { APP_FINISHED_LOADING, USER_LOGGED_IN } from 'frontend/actions/types'
+import logoutFunction from 'frontend/firebase/logout'
+import Settings from 'frontend/containers/Settings'
 
 describe('Settings container', () => {
   const store = setupStore()
@@ -28,11 +23,9 @@ describe('Settings container', () => {
 
   const wrapper = mount(
     <ThemeProvider theme={light}>
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <Settings />
-        </ConnectedRouter>
-      </Provider>
+      <App store={store}>
+        <Settings />
+      </App>
     </ThemeProvider>
   )
 

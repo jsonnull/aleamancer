@@ -1,21 +1,17 @@
 // @flow
 import React from 'react'
-import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import { ConnectedRouter } from 'react-router-redux'
-import { hydrateSessionsList } from '../../../src/actions'
-import setupStore, { history } from '../../setupStore'
-import Sessions from '../../../src/containers/Sessions'
+import App, { setupStore } from '../../appContainer'
+import { hydrateSessionsList } from 'frontend/actions'
+import Sessions from 'frontend/containers/Sessions'
 
 describe('Sessions container', () => {
   it('should show placeholder text if user has no sessions', () => {
     const store = setupStore()
     const wrapper = mount(
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <Sessions />
-        </ConnectedRouter>
-      </Provider>
+      <App store={store}>
+        <Sessions />
+      </App>
     )
     expect(wrapper.text()).toContain(
       "Yikes, looks like you're not a member of any games."
@@ -39,11 +35,9 @@ describe('Sessions container', () => {
   const storeWithSessions = setupStore()
   storeWithSessions.dispatch(hydrateSessionsList(sessions))
   const wrapper = mount(
-    <Provider store={storeWithSessions}>
-      <ConnectedRouter history={history}>
-        <Sessions />
-      </ConnectedRouter>
-    </Provider>
+    <App store={storeWithSessions}>
+      <Sessions />
+    </App>
   )
   it('should show list of sessions', () => {
     expect(wrapper.find('Item')).toHaveLength(2)

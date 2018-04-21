@@ -6,7 +6,7 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
-    './src/index.js'
+    './src/frontend/index.js'
   ],
   mode: 'development',
   output: {
@@ -41,9 +41,14 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    mainFields: ['browser', 'main', 'module'],
+    extensions: ['.js', '.json', '.jsx'],
+    modules: [resolve(__dirname, 'src'), 'node_modules']
+  },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
+      template: 'src/frontend/index.html'
     }),
     new webpack.HotModuleReplacementPlugin()
   ],

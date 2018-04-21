@@ -6,3 +6,6 @@
 suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe
 suppress_comment=\\(.\\|\n\\)*\\$FlowJestError
 module.name_mapper='.*\.\(svg\|png\|jpg\|gif\|css\|otf\|eot\|ttf\|woff\|woff2\)$' -> '<PROJECT_ROOT>/scripts/flow/rawStub.js'
+module.name_mapper='^frontend\/\(.*\)$' -> '<PROJECT_ROOT>/src/frontend/\1'
+module.name_mapper='^api\/\(.*\)$' -> '<PROJECT_ROOT>/src/api/\1'
+module.name_mapper='^common\/\(.*\)$' -> '<PROJECT_ROOT>/src/common/\1'

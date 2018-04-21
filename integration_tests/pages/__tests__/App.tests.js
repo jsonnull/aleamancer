@@ -1,15 +1,13 @@
 // @flow
 import React from 'react'
-import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import { ConnectedRouter } from 'react-router-redux'
+import AppContainer, { setupStore } from '../../appContainer'
 import {
   APP_FINISHED_LOADING,
   SHOW_SETTINGS,
   USER_LOGGED_IN
-} from '../../../src/actions/types'
-import setupStore, { history } from '../../setupStore'
-import App from '../../../src/pages/App'
+} from 'frontend/actions/types'
+import App from 'frontend/pages/App'
 
 describe('App container', () => {
   let store, wrapper
@@ -19,11 +17,9 @@ describe('App container', () => {
     store.dispatch({ type: USER_LOGGED_IN })
 
     wrapper = mount(
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <App />
-        </ConnectedRouter>
-      </Provider>
+      <AppContainer store={store}>
+        <App />
+      </AppContainer>
     )
   })
 

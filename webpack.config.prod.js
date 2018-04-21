@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/frontend/index.js',
   output: {
     filename: '[name].[chunkhash].js',
     path: resolve(__dirname, 'public'),
@@ -31,6 +31,11 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    mainFields: ['browser', 'main', 'module'],
+    extensions: ['.js', '.json', '.jsx'],
+    modules: [resolve(__dirname, 'src'), 'node_modules']
+  },
   devtool: 'source-map',
   optimization: {
     minimize: false,
@@ -41,7 +46,7 @@ module.exports = {
   plugins: [
     new webpack.HashedModuleIdsPlugin(),
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
+      template: 'src/frontend/index.html'
     }),
     new webpack.DefinePlugin({
       'process.env': {

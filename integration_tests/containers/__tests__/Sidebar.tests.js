@@ -1,11 +1,10 @@
 // @flow
 import React from 'react'
-import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import { push, ConnectedRouter } from 'react-router-redux'
-import { hydrateSessionsList } from '../../../src/actions'
-import setupStore, { history } from '../../setupStore'
-import Sidebar from '../../../src/containers/Sidebar'
+import { push } from 'react-router-redux'
+import App, { setupStore } from '../../appContainer'
+import { hydrateSessionsList } from 'frontend/actions'
+import Sidebar from 'frontend/containers/Sidebar'
 
 describe('Sidebar container', () => {
   const store = setupStore()
@@ -21,11 +20,9 @@ describe('Sidebar container', () => {
   store.dispatch(push('/g/test-session/id1'))
 
   const wrapper = mount(
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <Sidebar />
-      </ConnectedRouter>
-    </Provider>
+    <App store={store}>
+      <Sidebar />
+    </App>
   )
 
   it('show the name of the session', () => {

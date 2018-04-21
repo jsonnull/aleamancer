@@ -1,11 +1,9 @@
 // @flow
 import React from 'react'
-import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import { ConnectedRouter } from 'react-router-redux'
-import { sendMessage, receiveMessage } from '../../../src/actions'
-import setupStore, { history, dispatchSpy } from '../../setupStore'
-import Chat from '../../../src/containers/Chat'
+import App, { setupStore, dispatchSpy } from '../../appContainer'
+import { sendMessage, receiveMessage } from 'frontend/actions'
+import Chat from 'frontend/containers/Chat'
 
 describe('Chat container', () => {
   const store = setupStore()
@@ -19,11 +17,9 @@ describe('Chat container', () => {
   store.dispatch(receiveMessage(message))
 
   const wrapper = mount(
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <Chat />
-      </ConnectedRouter>
-    </Provider>
+    <App store={store}>
+      <Chat />
+    </App>
   )
 
   it('should show messages', () => {

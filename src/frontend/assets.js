@@ -1,0 +1,9 @@
+// @flow
+import '!file-loader?name=[name].[ext]&outputPath=css/!font-awesome/css/font-awesome.min.css'
+import '!file-loader?name=[name].[ext]&outputPath=fonts/!font-awesome/fonts/FontAwesome.otf'
+import '!file-loader?name=[name].[ext]&outputPath=fonts/!font-awesome/fonts/fontawesome-webfont.eot'
+import '!file-loader?name=[name].[ext]&outputPath=fonts/!font-awesome/fonts/fontawesome-webfont.svg'
+import '!file-loader?name=[name].[ext]&outputPath=fonts/!font-awesome/fonts/fontawesome-webfont.ttf'
+import '!file-loader?name=[name].[ext]&outputPath=fonts/!font-awesome/fonts/fontawesome-webfont.woff'
+import '!file-loader?name=[name].[ext]&outputPath=fonts/!font-awesome/fonts/fontawesome-webfont.woff2'
+import '!file-loader?name=[name].[ext]&outputPath=img/!../../hero.png'
