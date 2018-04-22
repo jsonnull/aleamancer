@@ -7,7 +7,6 @@ import type {
   UserProfile
 } from 'common/types'
 import type { PreferencesState } from 'frontend/reducers/preferences'
-import type { SessionsState } from 'frontend/reducers/sessions'
 import type { Action } from 'frontend/actions/types'
 
 /*

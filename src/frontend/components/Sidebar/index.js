@@ -38,7 +38,6 @@ type Props = {
       name: string
     }
   },
-  open: boolean,
   tab: Tab,
   changeTab: Function
 }

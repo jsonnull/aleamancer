@@ -6,8 +6,13 @@ import Sidebar from '../index.js'
 describe('Sidebar component', () => {
   const renderer = new ShallowRenderer()
   it('renders correctly', () => {
+    const currentSession = { game: { name: 'name' } }
     renderer.render(
-      <Sidebar name="name" open={true} tab="Session" changeTab={() => {}} />
+      <Sidebar
+        currentSession={currentSession}
+        tab="Session"
+        changeTab={() => {}}
+      />
     )
     const tree = renderer.getRenderOutput()
     expect(tree).toMatchSnapshot()

@@ -1,11 +1,9 @@
 // @flow
 import currentUser from './currentUser'
-import messages from './messages'
 import preferences from './preferences'
 import sidebar from './sidebar'
 import ui from './ui'
 import type { CurrentUserState } from './currentUser'
-import type { MessagesState } from './messages'
 import type { PreferencesState } from './preferences'
 import type { SidebarState } from './sidebar'
 import type { UIState } from './ui'
@@ -20,11 +18,10 @@ type RouterState = {
 
 export type ReducerState = {
   currentUser: CurrentUserState,
-  messages: MessagesState,
   preferences: PreferencesState,
   sidebar: SidebarState,
   ui: UIState,
   router: RouterState
 }
 
-export { currentUser, messages, preferences, sidebar, ui }
+export { currentUser, preferences, sidebar, ui }

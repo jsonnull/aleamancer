@@ -3,7 +3,6 @@ import React from 'react'
 import { mount } from 'enzyme'
 import { push } from 'react-router-redux'
 import App, { setupStore } from '../../appContainer'
-import { hydrateSessionsList } from 'frontend/actions'
 import Sidebar from 'frontend/containers/Sidebar'
 
 describe('Sidebar container', () => {
@@ -16,7 +15,6 @@ describe('Sidebar container', () => {
       }
     }
   ]
-  store.dispatch(hydrateSessionsList(sessions))
   store.dispatch(push('/g/test-session/id1'))
 
   const wrapper = mount(

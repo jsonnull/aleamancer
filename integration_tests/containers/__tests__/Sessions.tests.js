@@ -2,7 +2,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import App, { setupStore } from '../../appContainer'
-import { hydrateSessionsList } from 'frontend/actions'
 import Sessions from 'frontend/containers/Sessions'
 
 describe('Sessions container', () => {
@@ -33,7 +32,7 @@ describe('Sessions container', () => {
     }
   ]
   const storeWithSessions = setupStore()
-  storeWithSessions.dispatch(hydrateSessionsList(sessions))
+  // storeWithSessions.dispatch(hydrateSessionsList(sessions))
   const wrapper = mount(
     <App store={storeWithSessions}>
       <Sessions />

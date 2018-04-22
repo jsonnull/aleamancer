@@ -2,7 +2,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Item from './ListItem'
-import type { GetCurrentUserGamesType } from 'frontend/graphql/queries/getCurrentUserGames'
+import type { GetCurrentUserGamesType } from 'frontend/graphql/queries/currentUser/getCurrentUserGames'
 
 const EmptyList = styled.div`
   margin: 2rem 0;
@@ -31,6 +31,11 @@ const FullList = (props: Props) => {
   }
 
   const sessions = currentUser.games
+
+  // FIXME:
+  if (!sessions) {
+    throw new Error('sessions was undefined')
+  }
 
   if (sessions.length === 0) {
     return (

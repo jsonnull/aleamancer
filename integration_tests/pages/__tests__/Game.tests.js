@@ -3,22 +3,21 @@ import React from 'react'
 import { mount } from 'enzyme'
 import AppContainer, { setupStore } from '../../appContainer'
 import {
-  APP_FINISHED_LOADING,
+  INITIAL_AUTH_FINISHED,
   SHOW_SETTINGS,
   USER_LOGGED_IN
 } from 'frontend/actions/types'
-import App from 'frontend/pages/App'
+import Game from 'frontend/pages/Game'
 
-describe('App container', () => {
+describe('Game view', () => {
   let store, wrapper
 
   beforeEach(() => {
     store = setupStore()
-    store.dispatch({ type: USER_LOGGED_IN })
 
     wrapper = mount(
       <AppContainer store={store}>
-        <App />
+        <Game />
       </AppContainer>
     )
   })
@@ -28,7 +27,8 @@ describe('App container', () => {
   })
 
   it('should dismiss loading screen', () => {
-    store.dispatch({ type: APP_FINISHED_LOADING })
+    store.dispatch({ type: USER_LOGGED_IN })
+    store.dispatch({ type: INITIAL_AUTH_FINISHED })
     wrapper.update()
     expect(wrapper.find('LoadingModal')).toHaveLength(0)
   })

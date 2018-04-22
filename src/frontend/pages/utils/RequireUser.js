@@ -6,7 +6,7 @@ import type { State } from 'frontend/store'
 import Loading from 'frontend/components/Loading'
 
 type Props = {
-  component: React.Component<any>,
+  component: React.ComponentType<*>,
   location: { pathname: string },
   initialAuthFinished: boolean,
   userIsLoggedIn: boolean
@@ -38,10 +38,10 @@ const RequireUser = (outerProps: Props) => {
   )
 }
 
-const mapStateToProps = (state: State): Props => ({
+const mapStateToProps = (state: State) => ({
   initialAuthFinished: state.ui.initialAuthFinished,
   userIsLoggedIn: state.ui.userIsLoggedIn,
   location: state.router.location
 })
 
-export default connect(mapStateToProps)(RequireUser)
+export default connect(mapStateToProps, {})(RequireUser)
