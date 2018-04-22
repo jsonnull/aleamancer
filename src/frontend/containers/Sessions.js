@@ -5,8 +5,8 @@ import { push } from 'react-router-redux'
 import slug from 'slugg'
 import { changeSidebarTab, switchToSession } from 'frontend/actions'
 import Sessions from 'frontend/components/Sessions'
+import { getCurrentUserGames } from 'frontend/graphql/queries/currentUser/getCurrentUserGames'
 import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
 
 const mapDispatchToProps = dispatch => ({
   switchToSession: (id, name) => {
@@ -16,18 +16,7 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-const sessionsQuery = gql`
-  query {
-    currentUser {
-      games {
-        id
-        name
-      }
-    }
-  }
-`
-
 export default compose(
   connect(undefined, mapDispatchToProps),
-  graphql(sessionsQuery)
+  graphql(getCurrentUserGames)
 )(Sessions)

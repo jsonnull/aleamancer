@@ -1,8 +1,8 @@
 // @flow
 import React from 'react'
 import styled from 'styled-components'
-import type { SessionInfo } from 'common/types'
 import Item from './ListItem'
+import type { GetCurrentUserGamesType } from 'frontend/graphql/queries/getCurrentUserGames'
 
 const EmptyList = styled.div`
   margin: 2rem 0;
@@ -18,19 +18,16 @@ const List = styled.div`
 const Loading = () => <div>Loading...</div>
 
 type Props = {
-  data: { loading: boolean, error?: string, variables: Object },
+  loading: boolean,
+  currentUser: { games?: Array<GetCurrentUserGamesType> },
   setSession: Function
 }
 
 const FullList = (props: Props) => {
-  const { loading, error, currentUser } = props.data
+  const { loading, currentUser } = props
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error) {
-    throw error
   }
 
   const sessions = currentUser.games
