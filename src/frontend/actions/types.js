@@ -15,6 +15,7 @@ export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE'
 export const APP_FINISHED_LOADING = 'APP_FINISHED_LOADING'
 export const SHOW_SETTINGS = 'SHOW_SETTINGS'
 export const HIDE_SETTINGS = 'HIDE_SETTINGS'
+export const INITIAL_AUTH_FINISHED = 'INITIAL_AUTH_FINISHED'
 export const PERFORM_USER_LOGIN = 'PERFORM_USER_LOGIN'
 export const USER_LOGGED_IN = 'USER_LOGGED_IN'
 export const PERFORM_USER_LOGOUT = 'PERFORM_USER_LOGOUT'
@@ -39,6 +40,7 @@ export type Action =
   | { type: 'SHOW_SETTINGS' }
   | { type: 'HIDE_SETTINGS' }
   // User
+  | { type: 'INITIAL_AUTH_FINISHED' }
   | { type: 'PERFORM_USER_LOGIN', email: string, password: string }
   | { type: 'USER_LOGGED_IN', id: string, email: string }
   | { type: 'PERFORM_USER_LOGOUT' }

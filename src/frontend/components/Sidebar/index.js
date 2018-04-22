@@ -33,28 +33,30 @@ const ContentContainer = styled.div`
 `
 
 type Props = {
-  currentSession: Object,
+  currentSession: {
+    game: {
+      name: string
+    }
+  },
   open: boolean,
   tab: Tab,
   changeTab: Function
 }
 
-class Sidebar extends React.Component<Props> {
-  render() {
-    const { tab, changeTab, currentSession } = this.props
+const Sidebar = (props: Props) => {
+  const { tab, changeTab, currentSession } = props
 
-    return (
-      <Container>
-        <Top>
-          <Header>{currentSession.game && currentSession.game.name}</Header>
-          <Menu tab={tab} changeTab={changeTab} />
-        </Top>
-        <ContentContainer>
-          <Content tab={tab} />
-        </ContentContainer>
-      </Container>
-    )
-  }
+  return (
+    <Container>
+      <Top>
+        <Header>{currentSession.game && currentSession.game.name}</Header>
+        <Menu tab={tab} changeTab={changeTab} />
+      </Top>
+      <ContentContainer>
+        <Content tab={tab} />
+      </ContentContainer>
+    </Container>
+  )
 }
 
 export default Sidebar

@@ -3,12 +3,14 @@ import * as types from 'frontend/actions/types'
 import type { Action } from 'frontend/actions/types'
 
 export type UIState = {
+  initialAuthFinished: boolean,
   appIsLoading: boolean,
   userIsLoggedIn: boolean,
   showSettings: boolean
 }
 
 const initialState = {
+  initialAuthFinished: false,
   appIsLoading: true,
   userIsLoggedIn: false,
   showSettings: false
@@ -16,6 +18,11 @@ const initialState = {
 
 export default function reducer(state: UIState = initialState, action: Action) {
   switch (action.type) {
+    case types.INITIAL_AUTH_FINISHED:
+      return {
+        ...state,
+        initialAuthFinished: true
+      }
     case types.APP_FINISHED_LOADING:
       return {
         ...state,

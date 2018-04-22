@@ -4,14 +4,16 @@ import styled, { ThemeProvider } from 'styled-components'
 import { connect } from 'react-redux'
 import { hot } from 'react-hot-loader'
 import { Redirect, Route, Switch } from 'react-router'
-import Header from 'frontend/containers/Header'
-import Settings from 'frontend/containers/Settings'
-import type { State } from 'frontend/store'
+import RequireUser from './utils/RequireUser'
 import * as themes from 'frontend/styles/themes'
 import { CONSTS } from 'frontend/styles/common'
-import Login from './Login'
-import App from './App'
+import Header from 'frontend/containers/Header'
+import Settings from 'frontend/containers/Settings'
+import Sessions from 'frontend/containers/Sessions'
+import Game from './Game'
 import Home from './Home'
+import Login from './Login'
+import type { State } from 'frontend/store'
 
 const Container = styled.div`
   position: absolute;
@@ -33,13 +35,11 @@ const Inner = styled.div`
 `
 
 type Props = {
-  userIsLoggedIn: boolean,
-  location: Object,
   theme: Object
 }
 class Entry extends React.Component<Props> {
   render() {
-    const { userIsLoggedIn, theme } = this.props
+    const { theme } = this.props
 
     return (
       <ThemeProvider theme={theme}>
@@ -47,15 +47,10 @@ class Entry extends React.Component<Props> {
           <Header />
           <Inner>
             <Switch>
-              <Route
-                exact
-                path="/login"
-                render={() =>
-                  userIsLoggedIn ? <Redirect to="/sessions" /> : <Login />
-                }
-              />
               <Route exact path="/" component={Home} />
-              <Route component={App} />
+              <Route exact path="/login" component={Login} />
+              <RequireUser exact path="/sessions" component={Sessions} />
+              <RequireUser exact path="/g/:name/:id" component={Game} />
             </Switch>
           </Inner>
           <Settings />
@@ -66,9 +61,9 @@ class Entry extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: State): Props => ({
-  userIsLoggedIn: state.ui.userIsLoggedIn,
-  location: state.router.location,
-  theme: themes[state.preferences.theme]
+  theme: themes[state.preferences.theme],
+  // Next line is required so component updates when we dispatch a new location
+  location: state.router.location
 })
 
 const Connected = connect(mapStateToProps)(Entry)
