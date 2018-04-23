@@ -5,11 +5,32 @@ import Chat from '../index.js'
 
 describe('Chat component', () => {
   it('renders correctly', () => {
+    const currentUserWithPreferences = {
+      loading: false,
+      error: undefined,
+      currentUser: {
+        preferences: {
+          chatPinned: false,
+          theme: 'light'
+        }
+      }
+    }
+
+    const gameWithMessages = {
+      loading: false,
+      error: undefined,
+      game: {
+        messageConnection: {
+          edges: []
+        }
+      }
+    }
+
     const tree = renderer
       .create(
         <Chat
-          messages={[]}
-          isPinned={false}
+          gameWithMessages={gameWithMessages}
+          currentUserWithPreferences={currentUserWithPreferences}
           setChatPinned={() => {}}
           sendMessage={() => {}}
         />

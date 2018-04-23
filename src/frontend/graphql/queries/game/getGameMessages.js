@@ -26,6 +26,6 @@ export const getGameMessagesQuery = gql`
 `
 
 export const getGameMessagesByMatch = graphql(getGameMessagesQuery, {
-  name: 'messages',
+  name: 'gameWithMessages',
   ...getGameByMatchOptions
 })

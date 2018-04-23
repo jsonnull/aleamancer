@@ -4,7 +4,7 @@ import messageDataFragment from '../message/messageData'
 import type { MessageDataType } from '../message/messageData'
 
 export type GameMessagesType = {
-  messagesConnection: {
+  messageConnection: {
     edges: Array<{
       node: {
         ...$Exact<MessageDataType>

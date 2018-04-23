@@ -5,7 +5,9 @@ import preferencesDataFragment from '../../fragments/preferences/preferencesData
 import type { PreferencesDataType } from '../../fragments/preferences/preferencesData'
 
 export type GetCurrentUserPreferencesType = {
-  ...$Exact<PreferencesDataType>
+  preferences: {
+    ...$Exact<PreferencesDataType>
+  }
 }
 
 export const getCurrentUserPreferencesQuery = gql`

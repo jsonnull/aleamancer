@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer'
 import Sessions from '../index.js'
 
 describe('Sessions component', () => {
-  const data = {
+  const currentUserWithGames = {
     loading: false,
     error: undefined,
     currentUser: {
@@ -19,7 +19,12 @@ describe('Sessions component', () => {
 
   it('renders correctly', () => {
     const tree = renderer
-      .create(<Sessions data={data} switchToSession={() => {}} />)
+      .create(
+        <Sessions
+          currentUserWithGames={currentUserWithGames}
+          switchToSession={() => {}}
+        />
+      )
       .toJSON()
     expect(tree).toMatchSnapshot()
   })

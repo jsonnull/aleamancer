@@ -16,7 +16,7 @@ const GameInner = styled.div`
   left: 0;
 `
 
-const Game = ({ match }) => (
+const Game = ({ match }: Object) => (
   <GameInner>
     <Sidebar />
     <Map />
