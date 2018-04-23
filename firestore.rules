@@ -4,18 +4,18 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
-    // Messages
-    match /messages/{messageId} {
-      // Allow all users to write messages
-      allow read, write: if request.auth != null;
-    }
-
     // Sessions 
     match /sessions/{sessionId} {
       // Allow all users to see all sessions
       allow read: if request.auth != null;
       // Only allow session owner to change session info
       allow write: if resource.data.owner == request.auth.uid;
+
+      // Messages
+      match /messages/{messageId} {
+        // Allow all users to write messages
+        allow read, write: if request.auth != null;
+      }
     }
 
     // Users

@@ -6,7 +6,7 @@ import List from './List'
 import type { GetCurrentUserGamesType } from 'frontend/graphql/queries/currentUser/getCurrentUserGames'
 
 type Props = {
-  data: {
+  currentUserWithGames: {
     loading: boolean,
     error: ?string,
     currentUser: { games?: Array<GetCurrentUserGamesType> }
@@ -15,7 +15,10 @@ type Props = {
 }
 
 const Sessions = (props: Props) => {
-  const { data: { loading, error, currentUser }, switchToSession } = props
+  const {
+    currentUserWithGames: { loading, error, currentUser },
+    switchToSession
+  } = props
 
   return (
     <Container>

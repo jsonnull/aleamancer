@@ -13,7 +13,10 @@ export const getUserById = async (id: string): Promise<DBUser> => {
     throw new Error(`Could not get user with id ${id}`)
   }
 
-  return doc.data()
+  return {
+    id: id,
+    ...doc.data()
+  }
 }
 
 export const getCurrentUser = async () => {

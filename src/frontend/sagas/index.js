@@ -12,7 +12,7 @@ import sendMessages from './sendMessages'
 export default function* rootSaga(): Saga<void> {
   yield fork(loadUserProfile)
   yield fork(loginFlow)
-  yield fork(receiveMessages)
+  // yield fork(receiveMessages)
   yield fork(saveUserProfile)
   yield fork(sendMessages)
   // Preferences

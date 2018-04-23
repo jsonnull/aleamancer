@@ -20,6 +20,10 @@ export type Message = {
   timestamp: number
 }
 
+export type DBMessage = {
+  ...$Exact<Message>
+}
+
 export type SessionMeta = {
   name: string
 }
@@ -50,6 +54,7 @@ export type DBPreferences = {
 }
 
 export type DBGame = {
+  id: string,
   name: string,
   owner: string
 }

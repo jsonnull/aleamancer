@@ -16,11 +16,11 @@ const GameInner = styled.div`
   left: 0;
 `
 
-const Game = () => (
+const Game = ({ match }) => (
   <GameInner>
     <Sidebar />
     <Map />
-    <Chat />
+    <Chat match={match} />
   </GameInner>
 )
 

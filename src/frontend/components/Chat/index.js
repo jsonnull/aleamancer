@@ -6,6 +6,7 @@ import Header from './Header'
 import Info from './Info'
 import Compose from './Compose'
 import MessageList from './MessageList'
+import type { GetCurrentUserPreferencesType } from 'frontend/graphql/queries/currentUser/getCurrentUserPreferences'
 
 const CHAT_WIDTH = '320px'
 
@@ -29,7 +30,7 @@ const Container = styled.div`
 
 type Props = {
   messages: Array<Message>,
-  isPinned: boolean,
+  preferences: GetCurrentUserPreferencesType,
   setChatPinned: Function,
   sendMessage: Function
 }
@@ -42,9 +43,17 @@ class Chat extends React.Component<Props> {
   }
 
   render() {
-    const { isPinned, messages, setChatPinned } = this.props
+    const { currentUserWithPreferences, messages, setChatPinned } = this.props
 
-    const shownMessages = isPinned ? messages : messages.slice(-4)
+    const messagesView = messages.loading
+      ? []
+      : messages.game.messageConnection.edges.map(edge => edge.node)
+
+    const isPinned = currentUserWithPreferences.currentUser
+      ? currentUserWithPreferences.currentUser.preferences.chatPinned
+      : false
+
+    const shownMessages = isPinned ? messagesView : messagesView.slice(-4)
 
     return (
       <Container chatWidth={CHAT_WIDTH} isPinned={isPinned}>

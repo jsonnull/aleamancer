@@ -3,14 +3,8 @@ import { withProps, mapProps, compose } from 'recompose'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import Chat from 'frontend/components/Chat'
-
-const chatPinned = gql`
-  query {
-    preferences {
-      chatPinned
-    }
-  }
-`
+import { getCurrentUserPreferences } from 'frontend/graphql/queries/currentUser/getCurrentUserPreferences'
+import { getGameMessagesByMatch } from 'frontend/graphql/queries/game/getGameMessages'
 
 const setChatPinned = gql`
   mutation SetChatPinned($isPinned: Boolean!) {
@@ -32,7 +26,8 @@ export default compose(
   withProps({
     messages: []
   }),
-  graphql(chatPinned, { name: 'chatPinned' }),
+  getGameMessagesByMatch,
+  getCurrentUserPreferences,
   graphql(setChatPinned, { name: 'setChatPinned' }),
   graphql(sendMessage, { name: 'sendMessage' }),
   mapProps(props => ({
@@ -40,7 +35,6 @@ export default compose(
     setChatPinned: isPinned => props.setChatPinned({ variables: { isPinned } }),
     sendMessage: (...args) => {
       console.log(args)
-      props.setChatPinned()
     }
   }))
 )(Chat)

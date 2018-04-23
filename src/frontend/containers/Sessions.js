@@ -6,7 +6,6 @@ import slug from 'slugg'
 import { changeSidebarTab, switchToSession } from 'frontend/actions'
 import Sessions from 'frontend/components/Sessions'
 import { getCurrentUserGames } from 'frontend/graphql/queries/currentUser/getCurrentUserGames'
-import { graphql } from 'react-apollo'
 
 const mapDispatchToProps = dispatch => ({
   switchToSession: (id, name) => {
@@ -18,5 +17,5 @@ const mapDispatchToProps = dispatch => ({
 
 export default compose(
   connect(undefined, mapDispatchToProps),
-  graphql(getCurrentUserGames)
+  getCurrentUserGames
 )(Sessions)

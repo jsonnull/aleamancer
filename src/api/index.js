@@ -7,15 +7,13 @@ import merge from 'lodash/merge'
 
 import Game from './types/Game'
 import Message from './types/Message'
-import Preferences from './types/Preferences'
 import User from './types/User'
 
 import gameQueries from './queries/game'
-import preferencesQueries from './queries/preferences'
 import userQueries from './queries/user'
 
-import preferencesMutations from './mutations/preferences'
 import messageMutations from './mutations/message'
+import userMutations from './mutations/user'
 
 const Root = `
   # The root types, which will all be extended
@@ -33,18 +31,17 @@ const Root = `
 `
 
 // Collect the type definitions
-export const typeDefs = [Root, Game, Message, Preferences, User]
+export const typeDefs = [Root, Game, Message, User]
 
 // Collect the resolvers
 const resolvers = merge(
   {},
   // Queries
   gameQueries,
-  preferencesQueries,
   userQueries,
   // Mutations
-  preferencesMutations,
-  messageMutations
+  messageMutations,
+  userMutations
 )
 
 // Put together a schema based on the type definitions and resolvers
