@@ -19,7 +19,7 @@ const User = `
   }
 
   extend type Mutation {
-    setChatPinned(isPinned: Boolean!): Boolean
+    setChatPinned(isPinned: Boolean!): Preferences
   }
 `
 
