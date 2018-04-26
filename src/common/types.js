@@ -17,7 +17,7 @@ export type Message = {
   from: string,
   text: string,
   result: ?MessageResult,
-  timestamp: number
+  timestamp: Date
 }
 
 export type DBMessage = {

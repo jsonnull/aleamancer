@@ -13,6 +13,7 @@
     "transform-class-properties",
     "transform-object-rest-spread",
     "transform-remove-strict-mode",
+    "transform-async-generator-functions",
     "react-hot-loader/babel"
   ],
   "env": {

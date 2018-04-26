@@ -11,7 +11,7 @@ export type GetCurrentUserPreferencesType = {
 }
 
 export const getCurrentUserPreferencesQuery = gql`
-  query {
+  query currentUserPreferences {
     currentUser {
       preferences {
         ...preferencesData

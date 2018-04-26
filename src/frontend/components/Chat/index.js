@@ -16,6 +16,7 @@ type Props = {
     error: ?string,
     game: GetGameMessagesType
   },
+  subscribeToNewMessages: Function,
   currentUserWithPreferences: {
     loading: boolean,
     error: ?string,
@@ -27,9 +28,48 @@ type Props = {
 
 class Chat extends React.Component<Props> {
   messageQueue: []
+  state = {
+    subscription: null
+  }
 
   sendMessage = (text: string) => {
     this.props.sendMessage(text.trim())
+  }
+
+  componentDidMount() {
+    this.subscribe()
+  }
+
+  componentDidUpdate(prev) {
+    const { gameWithMessages } = this.props
+
+    // Do not allow old subscription messages to continue if we're mounting a
+    // new chat or regaining network status
+    if (gameWithMessages.loading) {
+      this.unsubscribe()
+    }
+
+    if (prev.gameWithMessages.loading && !gameWithMessages.loading) {
+      this.subscribe()
+    }
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe()
+  }
+
+  subscribe = () => {
+    this.setState({
+      subscription: this.props.subscribeToNewMessages()
+    })
+  }
+
+  unsubscribe = () => {
+    const { subscription } = this.state
+    if (subscription) {
+      // Perform unsubscribe from subscribeToMore
+      subscription()
+    }
   }
 
   render() {

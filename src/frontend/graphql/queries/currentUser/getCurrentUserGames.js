@@ -9,7 +9,7 @@ export type GetCurrentUserGamesType = {
 }
 
 export const getCurrentUserGamesQuery = gql`
-  query {
+  query currentUserGames {
     currentUser {
       games {
         ...gameInfo

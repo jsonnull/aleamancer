@@ -6,7 +6,7 @@ const Message = `
     from: String!
     result: String
     text: String!
-    timestamp: String!
+    timestamp: Date!
   }
 
   extend type Query {
@@ -14,13 +14,15 @@ const Message = `
   }
 
   input MessageInput {
-    from: String!
-    result: String
     text: String!
   }
 
   extend type Mutation {
-    sendMessage(message: MessageInput!): Message
+    sendMessage(game: ID!, message: MessageInput!): Message
+  }
+
+  extend type Subscription {
+    messageAdded(game: ID!): Message
   }
 `
 

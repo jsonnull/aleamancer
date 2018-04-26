@@ -1,7 +1,13 @@
 // @flow
+import { sendMessage } from 'api/models/message'
 
-const sendMessage = (obj: Object, args: Object, context: Object) => {
-  console.log(obj, args, context)
+const sendMessageResolver = (
+  _: any,
+  { game, message: { text } }: { game: string, input: { text: string } },
+  ctx: any
+) => {
+  const message = sendMessage(game, text)
+  return message
 }
 
-export default sendMessage
+export default sendMessageResolver

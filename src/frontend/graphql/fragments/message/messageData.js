@@ -6,7 +6,7 @@ export type MessageDataType = {
   from: string,
   text: string,
   result: any,
-  timestamp: number
+  timestamp: Date
 }
 
 export default gql`

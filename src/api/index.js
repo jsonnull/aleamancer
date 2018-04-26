@@ -1,10 +1,13 @@
 // @flow
 import { ApolloClient } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { SchemaLink } from 'apollo-link-schema'
+import SchemaLink from './schemaLink'
 import { makeExecutableSchema } from 'graphql-tools'
+import { concat } from 'apollo-link'
 import merge from 'lodash/merge'
+import consoleLink from './debug'
 
+import scalars from './types/scalars'
 import Game from './types/Game'
 import Message from './types/Message'
 import User from './types/User'
@@ -15,33 +18,38 @@ import userQueries from './queries/user'
 import messageMutations from './mutations/message'
 import userMutations from './mutations/user'
 
+import messageSubscriptions from './subscriptions/message'
+
 const Root = `
   # The root types, which will all be extended
   type Query
 
   type Mutation
 
-  #type Subscription
+  type Subscription
 
   schema {
     query: Query
     mutation: Mutation
-    #subscription: Subscription
+    subscription: Subscription
   }
 `
 
 // Collect the type definitions
-export const typeDefs = [Root, Game, Message, User]
+export const typeDefs = [scalars.typeDefs, Root, Game, Message, User]
 
 // Collect the resolvers
 const resolvers = merge(
   {},
+  scalars.resolvers,
   // Queries
   gameQueries,
   userQueries,
   // Mutations
   messageMutations,
-  userMutations
+  userMutations,
+  // Subscriptions
+  messageSubscriptions
 )
 
 // Put together a schema based on the type definitions and resolvers
@@ -52,6 +60,7 @@ const schema = makeExecutableSchema({
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
+  // link: concat(consoleLink, new SchemaLink({ schema }))
   link: new SchemaLink({ schema })
 })
 
