@@ -26,8 +26,11 @@ type Props = {
   sendMessage: Function
 }
 
-class Chat extends React.Component<Props> {
-  messageQueue: []
+type State = {
+  subscription: ?Function
+}
+
+class Chat extends React.Component<Props, State> {
   state = {
     subscription: null
   }
@@ -40,7 +43,7 @@ class Chat extends React.Component<Props> {
     this.subscribe()
   }
 
-  componentDidUpdate(prev) {
+  componentDidUpdate(prev: Props) {
     const { gameWithMessages } = this.props
 
     // Do not allow old subscription messages to continue if we're mounting a

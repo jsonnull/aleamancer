@@ -5,14 +5,12 @@ import loadPreferences from './preferences/loadPreferences'
 import savePreferences from './preferences/savePreferences'
 import loadUserProfile from './loadUserProfile'
 import loginFlow from './loginFlow'
-import receiveMessages from './receiveMessages'
 import saveUserProfile from './saveUserProfile'
 import sendMessages from './sendMessages'
 
 export default function* rootSaga(): Saga<void> {
   yield fork(loadUserProfile)
   yield fork(loginFlow)
-  // yield fork(receiveMessages)
   yield fork(saveUserProfile)
   yield fork(sendMessages)
   // Preferences

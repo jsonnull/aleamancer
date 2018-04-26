@@ -49,12 +49,10 @@ exports[`Sessions List component renders correctly with sessions 1`] = `
     className="c1"
     onClick={[Function]}
   >
-    <div>
-      <div
-        className="c2"
-      >
-        testName
-      </div>
+    <div
+      className="c2"
+    >
+      testName
     </div>
   </div>
 </div>

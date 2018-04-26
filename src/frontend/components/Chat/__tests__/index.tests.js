@@ -32,6 +32,7 @@ describe('Chat component', () => {
           gameWithMessages={gameWithMessages}
           currentUserWithPreferences={currentUserWithPreferences}
           setChatPinned={() => {}}
+          subscribeToNewMessages={() => {}}
           sendMessage={() => {}}
         />
       )

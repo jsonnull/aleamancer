@@ -20,7 +20,11 @@ export const getMessagesByGameId = async (id: string, first: number) => {
       ...doc.data()
     })
   )
-  return messages.reverse()
+
+  // Most recent messages arrive in order from latest to oldest, we reverse for
+  // the frontend
+  const reversed: Array<Object> = messages.reverse()
+  return reversed
 }
 
 export const listenToNewMessages = (id: string) => (callback: Function) => {

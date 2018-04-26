@@ -10,7 +10,7 @@ describe('Chat Message component', () => {
       from: 'testUser',
       text: 'text',
       result: null,
-      timestamp: 0
+      timestamp: new Date(0)
     }
     const tree = renderer
       .create(<Message message={message} isPinned={false} />)

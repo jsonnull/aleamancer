@@ -1,6 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Sessions component renders correctly 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding: 0 2rem;
+}
+
+.c2 {
+  font-size: 2.5rem;
+  line-height: 1;
+  font-family: Lora;
+  padding: 1rem 0;
+  margin: 0;
+}
+
 .c6 {
   display: inline-block;
   font-size: 1.3rem;
@@ -71,45 +110,6 @@ exports[`Sessions component renders correctly 1`] = `
   margin-right: -1rem;
 }
 
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: stretch;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-}
-
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  padding: 0 2rem;
-}
-
-.c2 {
-  font-size: 2.5rem;
-  line-height: 1;
-  font-family: Lora;
-  padding: 1rem 0;
-  margin: 0;
-}
-
 <div
   className="c0"
 >
@@ -128,12 +128,10 @@ exports[`Sessions component renders correctly 1`] = `
         className="c4"
         onClick={[Function]}
       >
-        <div>
-          <div
-            className="c5"
-          >
-            testName
-          </div>
+        <div
+          className="c5"
+        >
+          testName
         </div>
       </div>
     </div>

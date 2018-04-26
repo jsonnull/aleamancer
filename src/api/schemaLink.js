@@ -2,10 +2,10 @@
 import { ApolloLink, Operation, FetchResult, Observable } from 'apollo-link'
 import { execute, subscribe, GraphQLSchema } from 'graphql'
 
-type Options = {
+type SchemaLinkOptions = {
   schema: GraphQLSchema,
-  rootValue: any,
-  context: Function<Object> | any
+  rootValue?: any,
+  context?: Function | any
 }
 
 const isSubscription = (operation: Operation): boolean => {
@@ -25,7 +25,7 @@ export class SchemaLink extends ApolloLink {
   rootValue: any
   context: Function | any
 
-  constructor({ schema, rootValue, context }) {
+  constructor({ schema, rootValue, context }: SchemaLinkOptions) {
     super()
 
     this.schema = schema
@@ -51,7 +51,7 @@ export class SchemaLink extends ApolloLink {
             operation.operationName
           )
         ).then(async subscription => {
-          // errors are informative and can be sent to the client
+          // $FlowFixMe: expects subscription to be an instanceof AsyncIterable
           if (subscription.errors) {
             subscription.errors.forEach(error =>
               observer.error(error.originalError)

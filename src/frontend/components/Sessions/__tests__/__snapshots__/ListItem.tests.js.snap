@@ -1,15 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Sessions ListItem component renders correctly 1`] = `
-.c2 {
-  display: inline-block;
-  border-radius: 2px;
-  height: 1.5rem;
-  line-height: 1.5rem;
-  font-size: 1.3rem;
-  font-weight: bold;
-}
-
 .c1 {
   font-family: Lora;
   font-size: 1.8rem;
@@ -31,17 +22,10 @@ exports[`Sessions ListItem component renders correctly 1`] = `
   className="c0"
   onClick={[Function]}
 >
-  <div>
-    <div
-      className="c1"
-    >
-      testName
-    </div>
-    <div
-      className="c2"
-    >
-      Current
-    </div>
+  <div
+    className="c1"
+  >
+    name
   </div>
 </div>
 `;
