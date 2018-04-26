@@ -11,11 +11,12 @@ service cloud.firestore {
       // Only allow session owner to change session info
       allow write: if resource.data.owner == request.auth.uid;
 
-      // Messages
-      match /messages/{messageId} {
-        // Allow all users to write messages
-        allow read, write: if request.auth != null;
-      }
+    }
+
+    // Messages
+    match /messages/{messageId} {
+      // Allow all users to write messages
+      allow read, write: if request.auth != null;
     }
 
     // Users

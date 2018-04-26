@@ -6,7 +6,8 @@ import type { DBGame } from 'common/types'
 export const getMessagesByGameId = async (id: string, first: number) => {
   const collection = firebase
     .firestore()
-    .collection(`sessions/${id}/messages`)
+    .collection(`messages`)
+    .where('game', '==', id)
     .orderBy('timestamp', 'desc')
     .limit(20)
 
@@ -25,7 +26,8 @@ export const getMessagesByGameId = async (id: string, first: number) => {
 export const listenToNewMessages = (id: string) => (callback: Function) => {
   const query = firebase
     .firestore()
-    .collection(`sessions/${id}/messages`)
+    .collection(`messages`)
+    .where('game', '==', id)
     .orderBy('timestamp', 'desc')
     .limit(20)
 
@@ -52,14 +54,13 @@ export const listenToNewMessages = (id: string) => (callback: Function) => {
 }
 
 export const sendMessage = (id: string, text: string) => {
-  const messagesCollection = firebase
-    .firestore()
-    .collection(`sessions/${id}/messages`)
+  const messagesCollection = firebase.firestore().collection(`messages`)
 
   const message = {
     from: 'jsonnull',
     result: null,
     text: text,
+    game: id,
     timestamp: firebase.firestore.FieldValue.serverTimestamp()
   }
 
