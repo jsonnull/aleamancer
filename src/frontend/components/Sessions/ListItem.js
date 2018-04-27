@@ -1,7 +1,6 @@
 // @flow
 import React from 'react'
 import styled from 'styled-components'
-import type { SessionInfo } from 'common/types'
 import { fontSize, fonts } from 'frontend/styles/common'
 
 const SessionName = styled.div`

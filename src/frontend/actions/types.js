@@ -1,11 +1,5 @@
 // @flow
-import type {
-  Message,
-  SessionMeta,
-  Tab,
-  ThemeName,
-  UserProfile
-} from 'common/types'
+import type { Message, Tab, ThemeName, UserProfile } from 'common/types'
 import type { PreferencesState } from 'frontend/reducers/preferences'
 
 export const LOAD_MESSAGES = 'LOAD_MESSAGES'

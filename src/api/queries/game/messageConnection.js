@@ -5,7 +5,7 @@ import type { DBGame } from 'common/types'
 const messageConnection = async (
   { id }: DBGame,
   { first }: { first: number },
-  context: Object
+  _ctx: Object
 ) => {
   const messages = await getMessagesByGameId(id, first)
 

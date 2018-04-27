@@ -2,7 +2,6 @@
 import firebase from '@firebase/app'
 import '@firebase/auth'
 import '@firebase/firestore'
-import type { DBPreferences } from 'common/types'
 
 export const getPreferencesForCurrentUser = async () => {
   const uid = firebase.auth().currentUser.uid

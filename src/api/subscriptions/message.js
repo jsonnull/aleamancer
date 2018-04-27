@@ -7,8 +7,8 @@ const messageAdded = {
   subscribe: (
     _: any,
     { game }: { game: string },
-    ctx: Object,
-    info: Object
+    _ctx: Object,
+    _info: Object
   ) => {
     const listener = listenToNewMessages(game)
     const asyncIter = asyncify(listener)

@@ -7,7 +7,6 @@ import sessionIdSelector from 'frontend/selectors/sessionId'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import type { State } from 'frontend/store'
-import type { Tab } from 'common/types'
 
 const mapStateToProps = (state: State) => ({
   sessionId: sessionIdSelector(state),

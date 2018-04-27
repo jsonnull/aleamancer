@@ -16,7 +16,7 @@ type Props = {
 
 const Sessions = (props: Props) => {
   const {
-    currentUserWithGames: { loading, error, currentUser },
+    currentUserWithGames: { loading, currentUser },
     switchToSession
   } = props
 

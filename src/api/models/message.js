@@ -1,9 +1,8 @@
 // @flow
 import firebase from '@firebase/app'
 import '@firebase/firestore'
-import type { DBGame } from 'common/types'
 
-export const getMessagesByGameId = async (id: string, first: number) => {
+export const getMessagesByGameId = async (id: string, _first: number) => {
   const collection = firebase
     .firestore()
     .collection(`messages`)
@@ -68,7 +67,7 @@ export const sendMessage = (id: string, text: string) => {
     timestamp: firebase.firestore.FieldValue.serverTimestamp()
   }
 
-  const doc = messagesCollection.add(message)
+  messagesCollection.add(message)
 
   return {
     id: -1,

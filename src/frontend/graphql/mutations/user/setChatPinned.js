@@ -23,7 +23,7 @@ const setChatPinnedMutation = gql`
 `
 
 const setChatPinnedOptions = {
-  props: ({ ownProps, mutate }) => ({
+  props: ({ _ownProps, mutate }) => ({
     // Add setChatPinned on props based on `mutate`
     setChatPinned: (isPinned: boolean) => {
       return mutate({

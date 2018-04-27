@@ -6,7 +6,7 @@ import '@firebase/auth'
 const setChatPinned = async (
   _: any,
   { isPinned }: { isPinned: boolean },
-  ctx: any
+  _ctx: any
 ) => {
   const uid = firebase.auth().currentUser.uid
 

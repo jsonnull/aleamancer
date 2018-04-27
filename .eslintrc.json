@@ -4,7 +4,7 @@
   "env": {
     "jest": true
   },
-  "plugins": ["react", "flowtype", "import"],
+  "plugins": ["react", "flowtype"],
   "rules": {
     "eqeqeq": "off",
     "no-unused-vars": [
@@ -13,8 +13,6 @@
         "argsIgnorePattern": "^_"
       }
     ],
-    "import/order": "error",
-    "import/no-webpack-loader-syntax": "off",
     "react/prop-types": "off",
     "react/display-name": "off",
     "flowtype/require-valid-file-annotation": [
@@ -24,8 +22,5 @@
         "annotationStyle": "line"
       }
     ]
-  },
-  "settings": {
-    "import/core-modules": ["redux-saga/effects", "redux-saga/utils"]
   }
 }

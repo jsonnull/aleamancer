@@ -1,7 +1,6 @@
 // @flow
 import firebase from '@firebase/app'
 import { userLoggedIn } from 'frontend/actions'
-import { APP_FINISHED_LOADING } from 'frontend/actions/types'
 import { INITIAL_AUTH_FINISHED } from 'frontend/actions/types'
 
 // Initiates Firebase auth and listen to auth state changes
@@ -14,8 +13,6 @@ const initialize = (config: Object, store: Object) => {
     // Set the user's login state
     if (user) {
       store.dispatch(userLoggedIn(user.uid, user.email))
-    } else {
-      // store.dispatch({ type: APP_FINISHED_LOADING })
     }
 
     // This is the first confirmation that the user is logged-in or not

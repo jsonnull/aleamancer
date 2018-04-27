@@ -1,7 +1,5 @@
 // @flow
 import React from 'react'
-import styled from 'styled-components'
-import type { Message } from 'common/types'
 import { Container, Loading, Error } from './styles'
 import Header from './Header'
 import Info from './Info'

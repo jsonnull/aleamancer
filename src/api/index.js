@@ -1,11 +1,9 @@
 // @flow
 import { ApolloClient } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import SchemaLink from './schemaLink'
 import { makeExecutableSchema } from 'graphql-tools'
-import { concat } from 'apollo-link'
 import merge from 'lodash/merge'
-import consoleLink from './debug'
+import SchemaLink from './schemaLink'
 
 import scalars from './types/scalars'
 import Game from './types/Game'

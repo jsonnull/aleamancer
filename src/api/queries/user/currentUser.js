@@ -1,7 +1,7 @@
 // @flow
 import { getCurrentUser } from 'api/models/user'
 
-const currentUser = async (_: any, args: {}, context: Object) => {
+const currentUser = async (_: any, _args: {}, _ctx: Object) => {
   return getCurrentUser()
 }
 
